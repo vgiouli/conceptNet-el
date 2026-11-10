@@ -1,0 +1,4783 @@
+; Wed Oct 14 15:47:26 EEST 2026
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot garment_used_by
+;+		(comment "It links a noun X denoting a garment with a noun Y that denotes a (human) entity; X is thus prototypically defined as the garment normally worn by Y. \n\ngarment_used_by(ράσο,παπάς)\ngarment_used_by(σκούφος,σεφ)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL HUMAN FAMILY+MEMBER ATHLETE)
+;+		(inverse-slot wears_garment)
+		(create-accessor read-write))
+	(multislot arg0_SemClass
+;+		(comment "30.01.2019\nΜπορεί να επιλεγεί οποιαδήποτε σημασιολογική κατηγορία\n\n07.06.2017. \nΚανονικά θα πρέπει να μπορείς να συνδέεις αυτό με μία κατηγορία της οντολογίας - αυτή τη στιγμή υπάρχουν μόνο κάποιες τιμές.")
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot takes_place_in
+;+		(comment "takes_place_in(ΕΝΕΡΓΕΙΑ;ΔΙΑΔΙΚΑΣΙΑ, ΤΟΠΟΣ)\n\ntakes_place_in(ποδοσφαιρικός αγώνας, γήπεδο)")
+		(type INSTANCE)
+;+		(allowed-classes FACILITY)
+;+		(inverse-slot is_the_locationOfEvent)
+		(create-accessor read-write))
+	(single-slot deriv-sem-isAgent
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_the_state_of
+;+		(comment "is_the_state_of(αεργία, άεργος)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_morphologically_related_to
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+;+		(inverse-slot is_morphologically_related_to)
+		(create-accessor read-write))
+	(multislot arg4_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(single-slot has_gender
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+GENDER)
+		(default [Masculine])
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot believes_in
+;+		(comment "The slot is used to encode the relation between an entity denoting a supporter or fan of a belief, religion, etc and the , religion, theory, etc.\n\nbelieves_in(χριστιανός, χριστιανισμός)")
+		(type INSTANCE)
+;+		(allowed-classes RELIGION THEORY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_related_to.has+troponym
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot needs_tool
+;+		(comment "Links a profession or an activity with the tool that the professional normally uses or the activity the tool is used for. Example:\n\nis_used_in(φτυάρι, σκάψιμο)")
+		(type INSTANCE)
+;+		(allowed-classes EQUIPMENT)
+;+		(inverse-slot is_used_in)
+		(create-accessor read-write))
+	(single-slot is_characterised_by
+;+		(comment "The slot is used to denote a relation between an Adjective and a Noun.\n\nis_characterised_by(βροχερός, βροχή)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg4_has_the_semantic_role
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot V_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg3_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values ccomp csubj iobj nsubj pred obj)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_synonym_of
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has-affix
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_medio-passive_form_of
+;+		(comment "has_medio-passive_form(V1, V2)\n\nLinks a verb instance V1 with another verb instance V2; V1 either functions or may also funtion as the medio-passive form of V2. In this case, V1 is  synonymous to the mediopassive form of V2. Example:\n\nis_medio-passive_form(έχω ενημέρωση, ενημερώνω) --> the form έχω ενημέρωση is synonymous with the mediopassive form of the verb ενημερώνω (ενημερώνομαι).")
+		(type INSTANCE)
+;+		(allowed-classes VERB)
+		(create-accessor read-write))
+	(single-slot has_degree
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+DEGREE)
+		(default [Base])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot variants
+		(type INSTANCE)
+;+		(allowed-classes ADJECTIVE+MW)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_accessory
+;+		(comment "It links an object X with an accessory Y; the accessory is needed in order for the object to be complete or function properly\n\nhas_accessory(βιολί, δοξάρι)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_functional
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_gloss
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_result
+;+		(comment "has_result(χάνω, χαμός)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_fruit
+;+		(comment "has_fruit(μηλιά, μήλο)")
+		(type INSTANCE)
+;+		(allowed-classes PLANT-FRUIT-NUT)
+;+		(inverse-slot is_the_fruit_of)
+		(create-accessor read-write))
+	(single-slot hasColour
+;+		(comment "Is used to denote the relation between an adjective A and a noun N denoting colour:\n\nhasColour(μαύρος, μαύρο)")
+		(type INSTANCE)
+;+		(allowed-classes COLOUR)
+;+		(cardinality 0 1)
+;+		(inverse-slot IsTheColourOf)
+		(create-accessor read-write))
+	(multislot is_instantiated_in_language_by
+;+		(comment "is_instantiated_in_language(Concept, Word)")
+		(type INSTANCE)
+;+		(allowed-classes LEXICAL+UNIT)
+;+		(inverse-slot instantiates)
+		(create-accessor read-write))
+	(single-slot N_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot motion_directed_to
+;+		(comment "motion_directed_to(άνοδος, πάνω)")
+		(type INSTANCE)
+;+		(allowed-classes LOCATION)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg2_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg2.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge pp cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default pp)
+		(create-accessor read-write))
+	(multislot IsMadeof
+;+		(comment "The relation \"is_made_of(A, N)\" is used to link two instances, classified under the grammatical categories of A(djective) and N(oun). The N denotes a material, and the A denotes the property of being made by that material. Examples:\nisMadeOf(τσιμεντένιος, τσιμέντο)\nisMadeOf(ασημένιος, ασήμι)")
+		(type INSTANCE)
+;+		(allowed-classes MATERIAL)
+;+		(inverse-slot isUsed-to-make)
+		(create-accessor read-write))
+	(multislot has_syntactic_variant
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_symmetric
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg1_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg1.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase in genitive case\ncl-να: να clause\ncl-ότι: ότι clause\npp: prepositional phrase")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge cl-%CF%8C%CF%84%CE%B9 cl-%CE%BD%CE%B1 pp)
+		(default np_ac)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg4_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg4.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge pp cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(create-accessor read-write))
+	(single-slot has_polarity
+		(type INSTANCE)
+;+		(allowed-classes POLARITY)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot ConceptNet-EL-v2.1_Class47
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot isMadeBy
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot is_related_to.belongs_to
+;+		(comment "belongs_to(φοιτητικός, φοιτητής)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(single-slot is_payment_for
+;+		(comment "is_payment_for(εύρετρα, εύρεση)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot practices
+;+		(comment "για τη σχέση π.χ. ακτινολόγος-ακτινολογία")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSION SCIENCE ACTIVITY ART XI.ABOUT+ACTIVITY)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot is_practiced_by)
+		(create-accessor read-write))
+	(single-slot payment
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hasOffice_at
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+;+		(inverse-slot is_the_Office_of)
+		(create-accessor read-write))
+	(single-slot IsLocated
+;+		(comment "IsLocated(διπλανός, δίπλα)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot notes
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_used_in
+;+		(comment "για τη σχέση διαδικασίας-εργαλείου\nπ.χ. καρδιογράφος-καρδιογράφημα")
+		(type INSTANCE)
+;+		(allowed-classes PROCESS EVENT PROFESSION ART GAME ACTIVITY)
+;+		(inverse-slot needs_tool)
+		(create-accessor read-write))
+	(single-slot url
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot entails
+;+		(comment "entails(χιονίζει, χιόνι)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot isUsed-to-make
+;+		(comment "isUsed-to-make(ασήμι, ασημένιος)\n\nLinks a noun denoting material with an adjective (usually of the same etymological family) that denotes the characteristic \"is made of\"")
+		(type INSTANCE)
+;+		(allowed-classes ARTIFACT ABOUT+MATERIAL)
+;+		(inverse-slot IsMadeof)
+		(create-accessor read-write))
+	(single-slot preferredTerm
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot test+relation+type
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot relation_to
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pattern
+		(type SYMBOL)
+		(allowed-values Adj%3AAdv Adj%3AN Adj%3AV N%3AAdj N%3AN N%3AV V%3AAdj V%3AN nominalisation Reborrowing Loanword Adv%3AAdj)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot participates_in
+		(type INSTANCE)
+;+		(allowed-classes EVENT)
+;+		(inverse-slot hasParticipant)
+		(create-accessor read-write))
+	(single-slot ontologyId
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg1_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot the_effect
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+;+		(inverse-slot the_entity_that_causes)
+		(create-accessor read-write))
+	(multislot has_elements
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot IsLocatedIn
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot is_related_to.vehicle
+;+		(comment "is_related_to.vehicle(αυτοκινητιστικός, αυτοκίνητο)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot is_super_relation_type_of
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+;+		(inverse-slot is_sub_relation_type_of)
+		(create-accessor read-write))
+	(multislot IsTheColourOf
+;+		(comment "IsTheColourOf(μαύρο, μαύρος)\n\nΘα μπορούσε να χρησιμοποιηθεί και για την σύνδεση αντικειμένων με χαρακτηριστικό χρώμα και το χρώμα αυτό. Παράδειγμα\nhasColour(πορτοκάλι, πορτοκαλί)\n\nIsTheColourOf(πορτοκαλί, πορτοκάλι)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+COLOUR)
+;+		(inverse-slot hasColour)
+		(create-accessor read-write))
+	(multislot drives_vehicle
+;+		(comment "Links a noun X denoting an entity with a noun Y that denotes a vehicle; the noun X is thus prototypically defined as an entity that drives the vehicle (the driver of the vehicle). \n\ndrives_vehicle(πιλότος, αεροσκάφος)\ndrives_vehicle(καπετάνιος, πλοίο)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7 PROFESSIONAL)
+;+		(inverse-slot vehicle_is_driven_by)
+		(create-accessor read-write))
+	(single-slot Ppv_case
+		(type SYMBOL)
+		(allowed-values gen acc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_manifested_by
+		(type INSTANCE)
+;+		(allowed-classes BODY ABOUT+EMOTION+EXPRESSION)
+		(create-accessor read-write))
+	(multislot has_sense
+;+		(comment "Links a lemma form with one or more instances that pertain to a grammatical category G and is/are mapped onto a concept C. Lemmatisation rules apply  accoriding to lexicographic practices.")
+		(type INSTANCE)
+;+		(allowed-classes PART+of+SPEECH)
+;+		(inverse-slot CanonicalForm)
+		(create-accessor read-write))
+	(single-slot conceptId
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg5_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values ccomp csubj iobj nsubj pred obj)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_MorphoDerived_from
+		(type INSTANCE)
+;+		(allowed-classes LEXICAL+ENTRY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_of_the_event
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_Experiencer
+;+		(comment "Links an emotion or emotional state with the person that feels this emotion\n\nhas_EXPERIENCER(ζήλια, ζηλιάρης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot optional+arguments
+		(type SYMBOL)
+		(allowed-values 2 3 4 5)
+		(create-accessor read-write))
+	(multislot is_used_by
+;+		(comment "Links a tool with the professiona who typically uses this tool\n\nis_used_by(πιάνο, πιανίστας)\nis_used_by(νυστέρι, χειρουργός)\nis_used_by(ψαλλίδα, κηπουρός)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ARTIST+-+MUSICIAN ATHLETE HUMAN)
+;+		(inverse-slot uses_tool)
+		(create-accessor read-write))
+	(single-slot nominalization
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wears_garment
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot garment_used_by)
+		(create-accessor read-write))
+	(single-slot verb_combined
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot treats
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot is_treated_by)
+		(create-accessor read-write))
+	(single-slot arg3_has_the_semantic_role
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Patient Theme%2FTopic Recipient Measure)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot isPartOf)
+		(create-accessor read-write))
+	(single-slot C1_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg0_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg0.\nThe following values are allowed:\n \nnp_nm: noun phrase in nominative case\ncl-να: να clause\ncl-ότι: ότι clause")
+		(type SYMBOL)
+		(allowed-values np_nm cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default np_nm)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_inverse_relation_type
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+;+		(cardinality 0 1)
+;+		(inverse-slot has_inverse_relation_type)
+		(create-accessor read-write))
+	(multislot has_manner
+;+		(comment "has_manner(όμορφος, όμορφα)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot the_entity_is_afflicted_by
+;+		(comment "για τη σχέση αυτός που επηρεάζεται από μια κατάσταση\n\nπ.χ. ζαλισμένος-ζαλάδα\nθεραπεία-θεραπευμένος\nκαρδιοπάθεια-καρδιοπαθής")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(inverse-slot afflicts_entity)
+		(create-accessor read-write))
+	(multislot arg3_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(multislot selects_compl
+;+		(comment "Δηλώνεται ο Συμπληρωματικός δείκτης με τον οποίο εισάγεται η συμπληρωματική πρόταση")
+		(type SYMBOL)
+		(allowed-values %CF%8C%CF%84%CE%B9 %CE%BD%CE%B1 %CF%80%CE%BF%CF%85 %CF%80%CF%89%CF%82)
+		(create-accessor read-write))
+	(multislot works_in
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot is_the_workplace_of)
+		(create-accessor read-write))
+	(single-slot maintains_meaning
+		(type SYMBOL)
+		(allowed-values V C0 C1 C2)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_the_semantic_role
+;+		(comment "Agent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+		(default Agent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_effect
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_specific_use
+		(type INSTANCE)
+;+		(allowed-classes REGISTER)
+		(create-accessor read-write))
+	(single-slot has_case
+;+		(comment "The case of the lexical unit. By default, the case is nominative.")
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+CASE)
+		(default [Nominative])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_the_result_of
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot has_as_result)
+		(create-accessor read-write))
+	(single-slot is_related_to.sensation
+;+		(comment "is_related_to.sensation(ακούω, ακοή)\nis_related_to.sensation(βλέπω, όραση)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_the_quality
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot is_the_quality_of)
+		(create-accessor read-write))
+	(multislot has_body_part
+;+		(comment "The slot is used to link a concept denoting a part of the body with another concept that denotes the animal that typically has this bodypart:\n\nIsBodyPartOf(προβοσκίδα, ελέφαντας)")
+		(type INSTANCE)
+;+		(allowed-classes BODY)
+;+		(inverse-slot IsBodyPartOf)
+		(create-accessor read-write))
+	(single-slot %CE%9D_lexical_variance
+		(type SYMBOL)
+		(allowed-values N1 N2 adj no)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg2_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg1_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Cause Experiencer Patient Theme%2FTopic Beneficiary Instrument Location Measure Recipient)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Agent
+;+		(comment "It links a verb denoting an activity with a noun that is morphologically related with the verb; the verb is thus prototypically defined as an EVENT that usually has the noun as the AGENT of the event. \n\nhas_Agent(verb,Agent)\n\nhas_AGENT(πίνω, πότης)\nhas_AGENT(οδηγώ, οδηγός)\n\nhas_AGENT(συλλέγω, συλλέκτης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(inverse-slot IsTheAGENTof)
+		(create-accessor read-write))
+	(multislot the_bodypart_is_afflicted_by
+;+		(comment "Links a part of the body with the disease or condition that afflicts it:\n\nthe_bodypart_is_afflicted_by(αυτί, ωτίτιδα)\nthe_bodypart_is_afflicted_by(μάτι, μυωπία)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot afflicts_body_part)
+		(create-accessor read-write))
+	(multislot hasParticipant
+;+		(comment "has_participant(event,Participant)\n\nThe slot links an event to the entities that participate in it\n\nhas_participant(δίκη,αντίδικος)\nhas_participant(γάμος, καλεσμένος)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(inverse-slot participates_in)
+		(create-accessor read-write))
+	(multislot plays_musical-Instrument
+;+		(comment "plays(βιολιστής, βιολί)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot C2_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot makes_examination
+;+		(comment "για τη σχέση εξέτασης γιατρού")
+		(type INSTANCE)
+;+		(allowed-classes MEDICAL+PROCESS)
+		(create-accessor read-write))
+	(multislot vehicle_used_by
+		(type INSTANCE)
+;+		(allowed-classes VEHICLE)
+;+		(inverse-slot uses_vehicle)
+		(create-accessor read-write))
+	(multislot IsTheColourOf.Object
+;+		(comment "IsTheColourOf.Object(κόκκινο, παπαρούνα)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot C2_type
+		(type SYMBOL)
+		(allowed-values hum -hum npc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3C%3Chas_ID%3E%3E
+;+		(comment "The unique identifier (ID) of the lexical unit. When the instance of the ontology is being inserted in Protege automatically (from Tools > Wizards > Create multiple instances) the ID corresponds to the value inserted; otherwise, Protege creates the ID automatically in a random way.")
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME %3ASTANDARD-SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_hyperonym_of
+;+		(comment "The slot is used to denote the relation between a broad concept and a more specific concept:\n\nis_hyperonym_of(δέντρο, ιτιά)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot is_hyponym_of)
+		(create-accessor read-write))
+	(multislot is_related_to.emotion-behaviour
+;+		(comment "relates  an emotion to the behaviour or activity that causes this emotion πχ \n\nis_related_to.emotion-behaviour(φόβος, φοβίζω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+EMOTION+TRIGGERING+EVENT)
+		(create-accessor read-write))
+	(single-slot is_transitive
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_related_to.emotion-event
+;+		(comment "relates  an emotion to an emotional event, πχ \n\nis_related_to.emotion-event(φόβος, φοβάμαι)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+EMOTION+EVENT)
+		(create-accessor read-write))
+	(single-slot ontologyName
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_number
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+NUMBER)
+		(default [Singular])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_STIMULUS
+;+		(comment "has_STIMULUS(μίσος, μισητός)\n\nA stimulus evokes an emotion")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write))
+	(multislot is_the_habitat_of
+;+		(comment "The slot is used to encode the relation that holds between a location (habitat) and its usual inhabitant.\n\nis_the_habitat_of(περιστερώνας, περιστέρι)\n\nis_the_habitat_of(χωριό, χωρικός)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot has_as_habitat)
+		(create-accessor read-write))
+	(multislot arg3_selects_prep
+		(type SYMBOL)
+		(allowed-values %CE%B1%CF%80%CF%8C %CE%B3%CE%B9%CE%B1 %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write))
+	(multislot entity_that_rules
+;+		(comment "entity_that_rules(Entity,Government)\n\nentity_that_rules(ολιγάρχης,ολογαρχία)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot is_related_to
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+;+		(inverse-slot is_related_to)
+		(create-accessor read-write))
+	(multislot hasMember
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot isMemberOf)
+		(create-accessor read-write))
+	(multislot has_synonym
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+;+		(inverse-slot has_synonym)
+		(create-accessor read-write))
+	(single-slot is_the_manner_of
+;+		(comment "The slot is used to link an adverb with the adjective\n\nis_the_manner_of(γρήγορα, γρήγορος)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot makes_diagnosis
+;+		(comment "για τη σχέση γιατρού-διάγνωσης\nπ΄χ΄αιματολογική διάγνωση-αιματολόγος")
+		(type INSTANCE)
+;+		(allowed-classes MEDICAL+PROCESS)
+		(create-accessor read-write))
+	(single-slot has_Ingredients
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot isMemberOf
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot hasMember)
+		(create-accessor read-write))
+	(multislot is_related_to.abilityFeature
+;+		(comment "is_related-to.abilityFeature(ability,Feature)\n\nis_related-to.abilityFeature(αμβλύνοια,νους)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(single-slot arg2_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Declension-Pattern
+		(type SYMBOL)
+		(allowed-values %CE%9D1 %CE%9D2 %CE%9D1_%CE%9D2 adj_N)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_the_locationOfEvent
+;+		(comment "The slot is used to denote a relation betwee a location ot facility and the event that takes place in it.\n\nis_the_locationOfEvent(γήπεδο, αγώνας)\nis_the_locationOfEvent(θέατρο, παράσταση)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot takes_place_in)
+		(create-accessor read-write))
+	(single-slot instantiates
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+;+		(inverse-slot is_instantiated_in_language_by)
+		(create-accessor read-write))
+	(single-slot is_hyponym_of
+;+		(comment "The slot is used to denote the IS_A relation between a concept and a broader one:\n\nis_hyperonym_of(ιτιά, δέντρο)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+;+		(cardinality 1 1)
+;+		(inverse-slot is_hyperonym_of)
+		(create-accessor read-write))
+	(multislot has_translation
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME)
+;+		(inverse-slot has_translation)
+		(create-accessor read-write))
+	(multislot has_as_result
+;+		(comment "The slot is used to encode the relation that holds between a concept denoting the result of an activity and the activity itself. The result is instantiated by a Noun and the activity by a verb.\n\nExample")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot is_the_result_of)
+		(create-accessor read-write))
+	(multislot arg3_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg3.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values pp np_ac np_ge cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(create-accessor read-write))
+	(single-slot has_determiner
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_related_to.has+hyponym
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot is_related_to.has+hypernym)
+		(create-accessor read-write))
+	(single-slot has_pronoun
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot relation_from
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_root
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Poss+%3D+Ppv
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_meta_meaning
+		(type SYMBOL)
+		(allowed-values C0 C1 V C2)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot uses_vehicle
+		(type INSTANCE)
+;+		(allowed-classes LIVING+ENITY)
+;+		(inverse-slot vehicle_used_by)
+		(create-accessor read-write))
+	(single-slot C0%3DCompl
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_Intensity
+		(type INSTANCE)
+;+		(allowed-classes INTENSITY)
+		(default [intensityMedium])
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot the_entity_afflicted
+;+		(comment "για τη σχέση αυτός που επηρεάζεται από μια κατάσταση\n\nπ.χ. ζαλισμένος-ζαλάδα\nθεραπεία-θεραπευμένος\nκαρδιοπάθεια-καρδιοπαθής")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(single-slot foo
+		(type SYMBOL)
+		(allowed-values Ge Nm)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot uses_tool
+		(type INSTANCE)
+;+		(allowed-classes EQUIPMENT)
+;+		(inverse-slot is_used_by)
+		(create-accessor read-write))
+	(single-slot has_modifier
+		(type INSTANCE)
+;+		(allowed-classes ADJECTIVE ADVERB)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_allomorph
+;+		(comment "The slot is used to encode the allomorphy relation that holds between an instance in the SIGNIFIER domain and one or more variants that are also SIGNIFIER instances.\n\nhas_allomorph(σχολείο, σχολειό)\n\nIn most cases, the typical usage should be also encoded by means of the slot has_specific_use.")
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+;+		(inverse-slot has_allomorph)
+		(create-accessor read-write))
+	(single-slot C0_type
+		(type SYMBOL)
+		(allowed-values hum -hum npc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Product
+;+		(comment "The slot is used to encode the relation between an artistic product and the relative art:\n\nIs_the_Product_of(ποίηση, ποίημα)")
+		(type INSTANCE)
+;+		(allowed-classes ARTIFACT-ART)
+;+		(inverse-slot Is_the_Product_of)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot hasPart)
+		(create-accessor read-write))
+	(multislot the_entity_that_causes
+;+		(comment "για τη σχέση αυτός που προκαλεί κάτι\n\nπ.χ. τραυματικός=αυτός που προκαλεί τραύμα")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(inverse-slot the_effect)
+		(create-accessor read-write))
+	(multislot is_related_to.feature
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot hasProperty
+;+		(comment "hasProperty(έξυπνος, εξυπνάδα)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(inverse-slot is_the_property_of)
+		(create-accessor read-write))
+	(multislot is_related_to.has+hypernym
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot is_related_to.has+hyponym)
+		(create-accessor read-write))
+	(single-slot Is_the_Product_of
+;+		(comment "The slot is used to encode the relation between a type of art and the relative artistc product:\n\nIs_the_Product_of(ποίημα,ποίηση)")
+		(type INSTANCE)
+;+		(allowed-classes ART)
+;+		(cardinality 0 1)
+;+		(inverse-slot has_Product)
+		(create-accessor read-write))
+	(single-slot only+plural
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot IsBodyPartOf
+;+		(comment "IsBodyPartOf(προβοσκίδα, ελέφαντας)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot has_body_part)
+		(create-accessor read-write))
+	(single-slot C1_type
+		(type SYMBOL)
+		(allowed-values hum -hum npc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CanonicalForm
+;+		(comment "The canonical form property links an instance that pertains to a grammatical category G and is mapped onto a concept C to its canonical or dictionary form. In most cases, it indicates the lemma form L of the instance.\n\nAlso an Ontolex property.")
+		(type INSTANCE)
+;+		(allowed-classes LEXICAL+ENTRY)
+;+		(cardinality 0 1)
+;+		(inverse-slot has_sense)
+		(create-accessor read-write))
+	(multislot arg1_SemClass
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot vehicle_is_driven_by
+		(type INSTANCE)
+;+		(allowed-classes VEHICLE)
+;+		(inverse-slot drives_vehicle)
+		(create-accessor read-write))
+	(multislot arg1_selects_prep
+;+		(comment "The slot is used to encode the preposition of Arg1")
+		(type SYMBOL)
+		(allowed-values %CE%B3%CE%B9%CE%B1 %CE%B1%CF%80%CF%8C %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write))
+	(multislot plays_music
+;+		(comment "plays_music(Musician,Music)\n\nplays_music(τζαζίστας,μουσική)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot has_name
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot IsUsed_for
+;+		(comment "IsUsed_for(ψαλίδι, κόβω)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Adj_lexical_variance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_literal_meaning
+;+		(comment "Former: Actualisation\n\nDefined in:\nSavary, A., S. R. Cordeiro, T. Lichte, C. Ramisch, U.  Iñurrieta, and V. Giouli. 2019. Literal Occurrences of Multiword Expressions: Rare Birds That Cause a Stir. Prague Bulletin of Mathematical Linguistics 112 (2019): 5-54. DOI: 10.2478/pralin-2019-0001")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_term_of
+		(type INSTANCE)
+;+		(allowed-classes SCIENCE)
+		(create-accessor read-write))
+	(single-slot relation_type
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_as_habitat
+;+		(comment "The slot is used to encode the relation that holds between an entity and the location (habitat) it typically lives in (has_as_habitat(semInstance,FACILITY))\n\nExamples:\nhas_as_habitat(πέστροφα,ποτάμι)\nhas_as_habitat(περιστέρι, περιστερώνας)")
+		(type INSTANCE)
+;+		(allowed-classes FACILITY GEOGRAPHICAL_LOCATION)
+;+		(inverse-slot is_the_habitat_of)
+		(create-accessor read-write))
+	(multislot UsageExample
+;+		(comment "It is compatible with OntoLex property usageExample.\n\nThe property represents a textual example of the usage of an instance in the ontology that is mapped onto a concept. Multiple text segments can be added, in which case they encode the same meaning.\nIn Ontolex, the property usageExample relates an ontolex:LexicalSense with a lexicog:UsageExample.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot has_dialect
+;+		(comment "has_dialect_of(language,language)\n\nhas_dialect(Ελληνική, κατωιταλική)")
+		(type INSTANCE)
+;+		(allowed-classes LANGUAGE)
+;+		(inverse-slot is_a_dialect_of)
+		(create-accessor read-write))
+	(multislot is_treated_by
+;+		(comment "για τη σχέση γιατρού-πάθησης/ασθενούς\n\nπ.χ. καρδιολόγος-καρδιοπάθεια/καρδιοπαθής")
+		(type INSTANCE)
+;+		(allowed-classes HEALTH+PROFESSIONAL)
+;+		(inverse-slot treats)
+		(create-accessor read-write))
+	(multislot is_practiced_by
+;+		(comment "is_practiced_by(διδασκαλία, δάσκαλος)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ARTIST)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot practices)
+		(create-accessor read-write))
+	(multislot is_related_to.nosima
+;+		(comment "Links  a notion of being in a state of suffering by an illness to the illness itself\n\nis_related_to.nosima(κρυολογώ, κρυολόγημα)")
+		(type INSTANCE)
+;+		(allowed-classes NOUN)
+		(create-accessor read-write))
+	(multislot is_the_fruit_of
+;+		(comment "Links the fruit to the tree\n\nis_the_fruit_of(μήλο, μηλιά)")
+		(type INSTANCE)
+;+		(allowed-classes PLANT)
+;+		(inverse-slot has_fruit)
+		(create-accessor read-write))
+	(single-slot is_related_to.bodyPart
+;+		(comment "is_related_to.bodyPart(πνευμονικός, πνεύμονας)")
+		(type INSTANCE)
+;+		(allowed-classes BODY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_SemRole_deriv
+		(type INSTANCE)
+;+		(allowed-classes SEM-ROLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot C0_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg2_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(single-slot is_semRel_byDeriv
+;+		(comment "is semantically related by derivation")
+		(type INSTANCE)
+;+		(allowed-classes PART+of+SPEECH)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_related_to.time
+;+		(comment "is_related_to.time(χθεσινός, χθες)")
+		(type INSTANCE)
+;+		(allowed-classes TIME)
+		(create-accessor read-write))
+	(single-slot plays_sport
+		(type INSTANCE)
+;+		(allowed-classes SPORTS)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_medio-passive_form
+;+		(comment "has_medio-passive_form(V1, V2)\n\nLinks a verb instance V1 with another verb instance V2 that either functions or may also funtion as the medio-passive form of V1. In the latter case, the morphologically derived medio-passive form of V1 is synonymous with V2. Example:\n\nhas_medio-passive_form(κουράζω, κοπιάζω) --> the form κουράζομαι is synonymous with the verb κοπιάζω")
+		(type INSTANCE)
+;+		(allowed-classes VERB)
+		(create-accessor read-write))
+	(single-slot actor_of_the_event
+;+		(comment "Links an event to the entity that takes action in the event\n\nactor_of_the_event(Actor, Event)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot entails_emotion
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot has_field
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_used_for
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot has_co-ordinating_conjunction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_the_quality_of
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(inverse-slot has_the_quality)
+		(create-accessor read-write))
+	(multislot arg2_selects_prep
+		(type SYMBOL)
+		(allowed-values %CE%B1%CF%80%CF%8C %CE%B3%CE%B9%CE%B1 %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write))
+	(single-slot C3_type
+		(type SYMBOL)
+		(allowed-values hum -hum npc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_related_to.payment
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot is_caused_by
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+;+		(inverse-slot has_CAUSE)
+		(create-accessor read-write))
+	(single-slot is_actually
+		(type SYMBOL)
+		(allowed-values %CE%9D1 %CE%9D2 %CE%9D1_%CE%9D2)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Patient
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot afflicts_entity
+;+		(comment "The slot is used to denote the relation between a disease and the entity that suffers fron this disease\n\nafflicts_entity(disease,entity_suffering)\n\nafflicts_entity(βαρηκοϊα, βαρήκοος)\nafflicts_entity(σπογγώδης εγκεφαλοπάθεια, βοοειδές)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+;+		(inverse-slot the_entity_is_afflicted_by)
+		(create-accessor read-write))
+	(single-slot only+singular
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg4_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values ccomp csubj iobj nsubj pred obj)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_tense
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+TENSE)
+		(default [PresentTense])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mwe_type
+;+		(comment "VID	Verbal Idiomatic Expression\nLVC	Light Verb Construction\nMVC	Multi-verb construction\nVPC	Verb Particle Construction\nNID	Nominal Idiomatic Expression\ncollocation	collocation\nsimile	simile (τρώω σα βόδι, ήσυχος σαν αρνάκι)\nfixed\nsemi-fixed\nsyntactically-flexible\nterm")
+		(type SYMBOL)
+		(allowed-values VID LVC VPC NID collocation fixed semi-fixed syntactically-flexible simile term MVC AdjID AdvId)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot MWE-UD-representation
+;+		(comment "The UD-compatible representation of the syntactic tree of the MWE")
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_the_Office_of
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(inverse-slot hasOffice_at)
+		(create-accessor read-write))
+	(multislot is_sub_relation_type_of
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+;+		(inverse-slot is_super_relation_type_of)
+		(create-accessor read-write))
+	(single-slot afflicts_body_part
+;+		(comment "The slot is used to denote the relation between a disease/condition and the part of the body that is afflicted by this disease:\n\naffllicts_body_part(disease,part_of_the_body)\n\nExamples:\naffllicts_body_part(πλατυποδία,πόδι)\naffllicts_body_part(πονοκέφαλος,κεφάλι)")
+		(type INSTANCE)
+;+		(allowed-classes BODY)
+;+		(cardinality 0 1)
+;+		(inverse-slot the_bodypart_is_afflicted_by)
+		(create-accessor read-write))
+	(single-slot is_a_dialect_of
+;+		(comment "is_a_dialect_of(dialect, language)")
+		(type INSTANCE)
+;+		(allowed-classes LANGUAGE)
+;+		(cardinality 0 1)
+;+		(inverse-slot has_dialect)
+		(create-accessor read-write))
+	(multislot entails_appraisal
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+APPRAISAL)
+		(create-accessor read-write))
+	(single-slot has_TARGET
+;+		(comment "TARGET is what the Experiencer's feelings or experiences are directed towards or based upon. The TARGET differs from a STIMULUS because the the former is not construed as being direcly responsible for causing the emotion.")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot V_declension
+		(type SYMBOL)
+		(allowed-values V C0 C1 C2 Poss Ppv N1 N2)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_inverseFunctional
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot compl%3DC0
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_antonym
+;+		(comment "The slot is used to encode the antonymy relation that hholds  between an instance in the SIGNIFIER domain and one or more instances of the same domain that are opposite in meaning.\n\nhas_antonym(ανοικτός_1, κλειστός_1)")
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+;+		(inverse-slot has_antonym)
+		(create-accessor read-write))
+	(multislot fixed+elements
+;+		(comment "The elements of a VMWE that are morphologically (or otherwise) fixed\n(it was formely NP)")
+		(type SYMBOL)
+		(allowed-values C0 C1 C2 root - C1-PnPe-weak Prep Adv)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot has_head
+		(type INSTANCE)
+;+		(allowed-classes PART+of+SPEECH)
+		(create-accessor read-write))
+	(single-slot arg5_has_the_semantic_role
+		(type SYMBOL)
+		(allowed-values Agent Cause Experiencer Theme Topic Location Beneficiary Recipient)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_payment_to
+;+		(comment "is_payment_to(φακελάκι, γιατρός)\n\nis_payment_to(αποδοχές, εργαζόμενος)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_the_workplace_of
+;+		(comment "Links mainly a professional with the location/fascility typically related to the profession\n\nis_the_workplace_of(κουρείο, κουρέας)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ROLE)
+;+		(inverse-slot works_in)
+		(create-accessor read-write))
+	(single-slot has_CAUSE
+;+		(comment "This relation is used to link an event or state with its cause or trigger")
+		(type SYMBOL)
+;+		(allowed-parents ACTIVITY)
+;+		(cardinality 0 1)
+;+		(inverse-slot is_caused_by)
+		(create-accessor read-write))
+	(multislot IsTheAGENTof
+;+		(comment "Links a verb denoting an activity with a noun that is morphologically related with the verb; the noun is thus prototypically defined as the AGENT of the event.\n\nIsTheAGENTof(πότης,πίνω)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(inverse-slot has_Agent)
+		(create-accessor read-write))
+	(single-slot performs_action
+;+		(comment "performs_action(αγορητής, αγορεύω)\nperforms_action(αγοραστής, αγοράζω)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3C%3Cverb_combined%3E%3E
+;+		(comment "A verb combined with a MWE (nominal or other) as a collocate")
+		(type INSTANCE)
+;+		(allowed-classes VERB)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_the_property_of
+;+		(comment "is_the_property_of(εξυπνάδα, έξυπνος)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(inverse-slot hasProperty)
+		(create-accessor read-write))
+	(single-slot V_lexical_variance
+		(type SYMBOL)
+		(allowed-values C0 V C1 C2 no)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SIGNIFIER "ΣΗΝΑΙΝΟΝ"
+	(is-a USER)
+	(role concrete))
+
+(defclass STRUCTURE "ΔΟΜΗ"
+	(is-a SIGNIFIER)
+	(role concrete)
+	(single-slot %3C%3Chas_ID%3E%3E
+;+		(comment "The unique identifier (ID) of the lexical unit. When the instance of the ontology is being inserted in Protege automatically (from Tools > Wizards > Create multiple instances) the ID corresponds to the value inserted; otherwise, Protege creates the ID automatically in a random way.")
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME %3ASTANDARD-SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PHRASE "ΦΡΑΣΗ"
+	(is-a STRUCTURE)
+	(role concrete)
+	(multislot has_head
+		(type INSTANCE)
+;+		(allowed-classes PART+of+SPEECH)
+		(create-accessor read-write)))
+
+(defclass NOUN+PHRASE "ΟΝΟΜΑΤΙΚΗ ΦΡΑΣΗ"
+	(is-a PHRASE)
+	(role concrete)
+	(single-slot has_pronoun
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_determiner
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_modifier
+		(type INSTANCE)
+;+		(allowed-classes ADJECTIVE ADVERB)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass %CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A3%CE%A4%CE%99%CE%9A%CE%97
+	(is-a NOUN+PHRASE)
+	(role concrete))
+
+(defclass %CE%91%CE%A0%CE%9B%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A3%CE%A4%CE%99%CE%9A%CE%97+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97
+	(is-a %CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A3%CE%A4%CE%99%CE%9A%CE%97)
+	(role concrete))
+
+(defclass %CE%A3%CE%A5%CE%9D%CE%98%CE%95%CE%A4%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A3%CE%A4%CE%99%CE%9A%CE%97+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97
+	(is-a %CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A3%CE%A4%CE%99%CE%9A%CE%97)
+	(role concrete))
+
+(defclass %CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97
+	(is-a NOUN+PHRASE)
+	(role concrete)
+	(single-slot has_co-ordinating_conjunction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass %CE%91%CE%A0%CE%9B%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97
+	(is-a %CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97)
+	(role concrete))
+
+(defclass %CE%91%CE%A0%CE%9B%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%91%CE%99%CE%A4%CE%99%CE%91%CE%A4%CE%99%CE%9A%CE%97
+	(is-a %CE%91%CE%A0%CE%9B%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97)
+	(role concrete))
+
+(defclass %CE%91%CE%A0%CE%9B%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%93%CE%95%CE%9D%CE%99%CE%9A%CE%97
+	(is-a %CE%91%CE%A0%CE%9B%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97)
+	(role concrete))
+
+(defclass %CE%A3%CE%A5%CE%9D%CE%98%CE%95%CE%A4%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97
+	(is-a %CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97)
+	(role concrete))
+
+(defclass %CE%A3%CE%A5%CE%9D%CE%98%CE%95%CE%A4%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%91%CE%99%CE%A4%CE%99%CE%91%CE%A4%CE%99%CE%9A%CE%97
+	(is-a %CE%A3%CE%A5%CE%9D%CE%98%CE%95%CE%A4%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97)
+	(role concrete))
+
+(defclass %CE%A3%CE%A5%CE%9D%CE%98%CE%95%CE%A4%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%93%CE%95%CE%9D%CE%99%CE%9A%CE%97
+	(is-a %CE%A3%CE%A5%CE%9D%CE%98%CE%95%CE%A4%CE%97+%CE%9F%CE%9D%CE%9F%CE%9C%CE%91%CE%A4%CE%99%CE%9A%CE%97+%CE%A6%CE%A1%CE%91%CE%A3%CE%97+%CE%A3%CE%95+%CE%A0%CE%9B%CE%91%CE%93%CE%99%CE%91+%CE%A0%CE%A4%CE%A9%CE%A3%CE%97)
+	(role concrete))
+
+(defclass VERB+PHRASE "ΡΗΜΑΤΙΚΗ ΦΡΑΣΗ"
+	(is-a PHRASE)
+	(role concrete))
+
+(defclass PREPOSITIONAL+PHRASE "ΠΡΟΘΕΤΙΚΗ ΦΡΑΣΗ"
+	(is-a PHRASE)
+	(role concrete))
+
+(defclass ADVERBIAL+CLAUSE "ΕΠΙΡΡΗΜΑΤΙΚΗ ΦΡΑΣΗ"
+	(is-a PHRASE)
+	(role concrete))
+
+(defclass COMPLEMENT+CLAUSE "ΔΕΥΤΕΡΕΥΟΥΣΑ ΠΡΟΤΑΣΗ"
+	(is-a PHRASE)
+	(role concrete))
+
+(defclass VERB+STRUCTURE
+	(is-a STRUCTURE)
+	(role concrete))
+
+(defclass FIXED+SUBJECT "ΣΤΑΘΕΡΟ ΥΠΟΚΕΙΜΕΝΟ"
+	(is-a VERB+STRUCTURE)
+	(role concrete)
+	(single-slot C0%3DCompl
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Poss+%3D+Ppv
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Ppv_case
+		(type SYMBOL)
+		(allowed-values gen acc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot C0_type
+		(type SYMBOL)
+		(allowed-values hum -hum npc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot C0_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass C0+V+C1X
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+Poss
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+C1+Poss
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+C1X+Poss
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+N1
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+N1+Poss
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+Prep+C1
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+Prep+C1+Poss
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+Prep+N1
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+Prep+N1+Poss
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+C1+C2
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+C1+N2
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+Prep+C1+N2
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V+C1
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass C0+V
+	(is-a FIXED+SUBJECT)
+	(role concrete))
+
+(defclass FIXED+COMPLEMENT "ΣΤΑΘΕΡΟ ΣΥΜΠΛΗΡΩΜΑ"
+	(is-a VERB+STRUCTURE)
+	(role concrete)
+	(single-slot C2_type
+		(type SYMBOL)
+		(allowed-values hum -hum npc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot C1_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot C3_type
+		(type SYMBOL)
+		(allowed-values hum -hum npc)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot compl%3DC0
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot C2_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass N0+V+C1+1-Adv "για περιπτώσεις όπως: είμαι καλά"
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+Prep+C1+Prep+N2
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+C1
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+Det+C1
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+C1+1-Poss
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+C1+0-Poss
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+Prep+C1
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+Prep+C1+Gen
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+C1+C2
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+C1+Prep+C2
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+C1+Prep+N2
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass N0+V+C1+C2+Prep+N3
+	(is-a FIXED+COMPLEMENT)
+	(role concrete))
+
+(defclass NOUN+STRUCTURE
+	(is-a STRUCTURE)
+	(role concrete))
+
+(defclass Adj_N
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass N1_CONJ_N2
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass Adj1_+Adj2_N
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass Adj_N1_N2 "για περιπτώσεις όπως ομαλή/ανησυχητική πορεία νόσου"
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass N1_Adj_N2
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass N1_%CE%9D2ge
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass %CE%9D1_prep_N2
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass %CE%9D1_%CE%9D2
+	(is-a NOUN+STRUCTURE)
+	(role concrete))
+
+(defclass Z-TO-BE-REMOVED
+	(is-a STRUCTURE)
+	(role concrete))
+
+(defclass LEXICAL+UNIT "ΛΕΞΙΚΗ ΜΟΝΑΔΑ"
+	(is-a Z-TO-BE-REMOVED)
+	(role concrete))
+
+(defclass MAPPED+TO+SIGNIFIED+LU "ΑΠΕΙΚΟΝΙΖΟΜΕΝΗ ΣΤΟ ΣΗΜΑΙΝΟΜΕΝΟ ΛΕΞΙΚΗ ΜΟΝΑΔΑ"
+	(is-a LEXICAL+UNIT)
+	(role concrete)
+	(multislot has_specific_use
+		(type INSTANCE)
+;+		(allowed-classes REGISTER)
+		(create-accessor read-write))
+	(multislot is_morphologically_related_to
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(create-accessor read-write))
+	(multislot has_allomorph
+;+		(comment "The slot is used to encode the allomorphy relation that holds between an instance in the SIGNIFIER domain and one or more variants that are also SIGNIFIER instances.\n\nhas_allomorph(σχολείο, σχολειό)\n\nIn most cases, the typical usage should be also encoded by means of the slot has_specific_use.")
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(create-accessor read-write))
+	(multislot has_antonym
+;+		(comment "The slot is used to encode the antonymy relation that hholds  between an instance in the SIGNIFIER domain and one or more instances of the same domain that are opposite in meaning.\n\nhas_antonym(ανοικτός_1, κλειστός_1)")
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(create-accessor read-write))
+	(single-slot instantiates
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_translation
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME)
+		(create-accessor read-write))
+	(multislot has_synonym
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(create-accessor read-write)))
+
+(defclass SINGLE-WORD+LU "ΜΟΝΟΛΕΚΤΙΚΗ ΛΕΞΙΚΗ ΜΟΝΑΔΑ"
+	(is-a MAPPED+TO+SIGNIFIED+LU)
+	(role concrete)
+	(single-slot %3C%3Chas_ID%3E%3E
+;+		(comment "The unique identifier (ID) of the lexical unit. When the instance of the ontology is being inserted in Protege automatically (from Tools > Wizards > Create multiple instances) the ID corresponds to the value inserted; otherwise, Protege creates the ID automatically in a random way.")
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME+CONTINUOUS)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MULTI-WORD+LU "ΠΟΛΥΛΕΚΤΙΚΗ ΛΕΞΙΚΗ ΜΟΝΑΔΑ"
+	(is-a MAPPED+TO+SIGNIFIED+LU)
+	(role concrete)
+	(single-slot %3C%3Chas_ID%3E%3E
+;+		(comment "The unique identifier (ID) of the lexical unit. When the instance of the ontology is being inserted in Protege automatically (from Tools > Wizards > Create multiple instances) the ID corresponds to the value inserted; otherwise, Protege creates the ID automatically in a random way.")
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME+DISCONTINUOUS)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mwe_type
+;+		(comment "VID	Verbal Idiomatic Expression\nLVC	Light Verb Construction\nMVC	Multi-verb construction\nVPC	Verb Particle Construction\nNID	Nominal Idiomatic Expression\ncollocation	collocation\nsimile	simile (τρώω σα βόδι, ήσυχος σαν αρνάκι)\nfixed\nsemi-fixed\nsyntactically-flexible\nterm")
+		(type SYMBOL)
+		(allowed-values VID LVC VPC NID collocation fixed semi-fixed syntactically-flexible simile term MVC AdjID AdvId)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ADJECTIVE+STRUCTURE
+	(is-a STRUCTURE)
+	(role concrete))
+
+(defclass ADVERB+STRUCTURE
+	(is-a STRUCTURE)
+	(role concrete))
+
+(defclass PART+of+SPEECH "ΜΕΡΟΣ ΤΟΥ ΛΟΓΟΥ"
+	(is-a SIGNIFIER)
+	(role concrete)
+	(single-slot notes
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot CanonicalForm
+;+		(comment "The canonical form property links an instance that pertains to a grammatical category G and is mapped onto a concept C to its canonical or dictionary form. In most cases, it indicates the lemma form L of the instance.\n\nAlso an Ontolex property.")
+		(type INSTANCE)
+;+		(allowed-classes LEXICAL+ENTRY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot UsageExample
+;+		(comment "It is compatible with OntoLex property usageExample.\n\nThe property represents a textual example of the usage of an instance in the ontology that is mapped onto a concept. Multiple text segments can be added, in which case they encode the same meaning.\nIn Ontolex, the property usageExample relates an ontolex:LexicalSense with a lexicog:UsageExample.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot has_gloss
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass NOUN
+	(is-a PART+of+SPEECH)
+	(role concrete)
+	(single-slot has_number
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+NUMBER)
+		(default [Singular])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_case
+;+		(comment "The case of the lexical unit. By default, the case is nominative.")
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+CASE)
+		(default [Nominative])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_gender
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+GENDER)
+		(default [Masculine])
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass NOUN+SINGLE "ΜΟΝΟΛΕΚΤΙΚΟ ΟΥΣΙΑΣΤΙΚΟ"
+	(is-a SINGLE-WORD+LU NOUN)
+	(role concrete))
+
+(defclass NOUN+MW "ΠΟΛΥΛΕΚΤΙΚΟ ΟΥΣΙΑΣΤΙΚΟ"
+	(is-a MULTI-WORD+LU NOUN)
+	(role concrete)
+	(single-slot N_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot only+singular
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Declension-Pattern
+		(type SYMBOL)
+		(allowed-values %CE%9D1 %CE%9D2 %CE%9D1_%CE%9D2 adj_N)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_elements
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot nominalization
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot verb_combined
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %CE%9D_lexical_variance
+		(type SYMBOL)
+		(allowed-values N1 N2 adj no)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot only+plural
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_actually
+		(type SYMBOL)
+		(allowed-values %CE%9D1 %CE%9D2 %CE%9D1_%CE%9D2)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass VERB "ΡΗΜΑ"
+	(is-a PART+of+SPEECH)
+	(role concrete)
+	(single-slot has_tense
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+TENSE)
+		(default [PresentTense])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_medio-passive_form_of
+;+		(comment "has_medio-passive_form(V1, V2)\n\nLinks a verb instance V1 with another verb instance V2; V1 either functions or may also funtion as the medio-passive form of V2. In this case, V1 is  synonymous to the mediopassive form of V2. Example:\n\nis_medio-passive_form(έχω ενημέρωση, ενημερώνω) --> the form έχω ενημέρωση is synonymous with the mediopassive form of the verb ενημερώνω (ενημερώνομαι).")
+		(type INSTANCE)
+;+		(allowed-classes VERB)
+		(create-accessor read-write))
+	(multislot has_medio-passive_form
+;+		(comment "has_medio-passive_form(V1, V2)\n\nLinks a verb instance V1 with another verb instance V2 that either functions or may also funtion as the medio-passive form of V1. In the latter case, the morphologically derived medio-passive form of V1 is synonymous with V2. Example:\n\nhas_medio-passive_form(κουράζω, κοπιάζω) --> the form κουράζομαι is synonymous with the verb κοπιάζω")
+		(type INSTANCE)
+;+		(allowed-classes VERB)
+		(create-accessor read-write)))
+
+(defclass VERB+SINGLE "ΜΟΝΟΛΕΚΤΙΚΟ ΡΗΜΑ"
+	(is-a SINGLE-WORD+LU VERB)
+	(role concrete))
+
+(defclass VERB+MW "ΠΟΛΥΛΕΚΤΙΚΟ ΡΗΜΑ"
+	(is-a MULTI-WORD+LU VERB)
+	(role concrete)
+	(single-slot V_variants
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maintains_meaning
+		(type SYMBOL)
+		(allowed-values V C0 C1 C2)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot V_declension
+		(type SYMBOL)
+		(allowed-values V C0 C1 C2 Poss Ppv N1 N2)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot MWE-UD-representation
+;+		(comment "The UD-compatible representation of the syntactic tree of the MWE")
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_elements
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot fixed+elements
+;+		(comment "The elements of a VMWE that are morphologically (or otherwise) fixed\n(it was formely NP)")
+		(type SYMBOL)
+		(allowed-values C0 C1 C2 root - C1-PnPe-weak Prep Adv)
+;+		(value C0)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_meta_meaning
+		(type SYMBOL)
+		(allowed-values C0 C1 V C2)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot V_lexical_variance
+		(type SYMBOL)
+		(allowed-values C0 V C1 C2 no)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_literal_meaning
+;+		(comment "Former: Actualisation\n\nDefined in:\nSavary, A., S. R. Cordeiro, T. Lichte, C. Ramisch, U.  Iñurrieta, and V. Giouli. 2019. Literal Occurrences of Multiword Expressions: Rare Birds That Cause a Stir. Prague Bulletin of Mathematical Linguistics 112 (2019): 5-54. DOI: 10.2478/pralin-2019-0001")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ADJECTIVE "ΕΠΙΘΕΤΟ"
+	(is-a PART+of+SPEECH)
+	(role concrete)
+	(single-slot has_number
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+NUMBER)
+		(default [Singular])
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_gender
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+GENDER)
+		(default [Masculine])
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_degree
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+DEGREE)
+		(default [Base])
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ADJECTIVE+SINGLE "ΜΟΝΟΛΕΚΤΙΚΟ ΕΠΙΘΕΤΟ"
+	(is-a SINGLE-WORD+LU ADJECTIVE)
+	(role concrete))
+
+(defclass ADJECTIVE+MW "ΠΟΛΥΛΕΚΤΙΚΟ ΕΠΙΘΕΤΟ"
+	(is-a MULTI-WORD+LU ADJECTIVE)
+	(role concrete)
+	(single-slot %3C%3Cverb_combined%3E%3E
+;+		(comment "A verb combined with a MWE (nominal or other) as a collocate")
+		(type INSTANCE)
+;+		(allowed-classes VERB)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_elements
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot variants
+		(type INSTANCE)
+;+		(allowed-classes ADJECTIVE+MW)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ADVERB "ΕΠΙΡΡΗΜΑ"
+	(is-a PART+of+SPEECH)
+	(role concrete)
+	(multislot has_specific_use
+		(type INSTANCE)
+;+		(allowed-classes REGISTER)
+		(create-accessor read-write))
+	(single-slot has_degree
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+DEGREE)
+		(default [Base])
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ADVERB+SINGLE "ΜΟΝΟΛΕΚΤΙΚΟ ΕΠΙΡΡΗΜΑ"
+	(is-a SINGLE-WORD+LU ADVERB)
+	(role concrete))
+
+(defclass ADVERB+MW "ΠΟΛΥΛΕΚΤΙΚΟ ΕΠΙΡΡΗΜΑ"
+	(is-a MULTI-WORD+LU ADVERB)
+	(role concrete)
+	(single-slot %3C%3Cverb_combined%3E%3E
+;+		(comment "A verb combined with a MWE (nominal or other) as a collocate")
+		(type INSTANCE)
+;+		(allowed-classes VERB)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_elements
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass PREPOSITION "ΠΡΟΘΕΣΗ"
+	(is-a PART+of+SPEECH)
+	(role concrete)
+	(single-slot %3C%3Chas_ID%3E%3E
+;+		(comment "The unique identifier (ID) of the lexical unit. When the instance of the ontology is being inserted in Protege automatically (from Tools > Wizards > Create multiple instances) the ID corresponds to the value inserted; otherwise, Protege creates the ID automatically in a random way.")
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME %3ASTANDARD-SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PREP+MW "Multiword Preposition"
+	(is-a PREPOSITION MULTI-WORD+LU)
+	(role concrete)
+	(multislot has_elements
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass PREP+SINGLE "Single word prepositions"
+	(is-a PREPOSITION SINGLE-WORD+LU)
+	(role concrete))
+
+(defclass CONJ "A conjunction links words, phrases and clauses."
+	(is-a PART+of+SPEECH)
+	(role concrete)
+	(single-slot %3C%3Chas_ID%3E%3E
+;+		(comment "The unique identifier (ID) of the lexical unit. When the instance of the ontology is being inserted in Protege automatically (from Tools > Wizards > Create multiple instances) the ID corresponds to the value inserted; otherwise, Protege creates the ID automatically in a random way.")
+		(type INSTANCE)
+;+		(allowed-classes GRAPHEME %3ASTANDARD-SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_specific_use
+		(type INSTANCE)
+;+		(allowed-classes REGISTER)
+		(create-accessor read-write))
+	(multislot has_allomorph
+;+		(comment "The slot is used to encode the allomorphy relation that holds between an instance in the SIGNIFIER domain and one or more variants that are also SIGNIFIER instances.\n\nhas_allomorph(σχολείο, σχολειό)\n\nIn most cases, the typical usage should be also encoded by means of the slot has_specific_use.")
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(create-accessor read-write))
+	(multislot has_antonym
+;+		(comment "The slot is used to encode the antonymy relation that hholds  between an instance in the SIGNIFIER domain and one or more instances of the same domain that are opposite in meaning.\n\nhas_antonym(ανοικτός_1, κλειστός_1)")
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(create-accessor read-write))
+	(single-slot instantiates
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_functional
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_synonym
+		(type INSTANCE)
+;+		(allowed-classes MAPPED+TO+SIGNIFIED+LU)
+		(create-accessor read-write)))
+
+(defclass CONJ_SINGLE
+	(is-a CONJ SINGLE-WORD+LU)
+	(role concrete))
+
+(defclass CONJ+MWE
+	(is-a CONJ MULTI-WORD+LU)
+	(role concrete)
+	(multislot has_elements
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass NUMERAL
+	(is-a PART+of+SPEECH)
+	(role concrete))
+
+(defclass ARTICLE
+	(is-a PART+of+SPEECH)
+	(role concrete))
+
+(defclass PRON "Pronoun"
+	(is-a PART+of+SPEECH)
+	(role concrete)
+	(single-slot has_case
+;+		(comment "The case of the lexical unit. By default, the case is nominative.")
+		(type INSTANCE)
+;+		(allowed-classes GRAMMATICAL+CASE)
+		(default [Nominative])
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PRON+SINGLE "ΜΟΝΟΛΕΚΤΙΚΗ ΑΝΤΩΝΥΜΙΑ"
+	(is-a SINGLE-WORD+LU PRON)
+	(role concrete))
+
+(defclass PRON_MW
+	(is-a PRON)
+	(role concrete))
+
+(defclass GRAPHEME "ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ"
+	(is-a SIGNIFIER)
+	(role concrete))
+
+(defclass GRAPHEME+CONTINUOUS "ΣΥΝΕΧΗΣ ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ\n\nΤα στιγμιότυπα της κλάσης αντιστοιχούν στο κατά Saussure σημαίνον (Signifier) της λέξης (λεξικής μονάδας). Κάθε στιγμιότυπο, αντιστοιχίζεται μοναδικά με ένα στιγμιότυπο της κλάσης SIGNIFIED. Η συντριπτική πλειοψηφία των εγγραφών του εννοιολογικού λεξικού ανήκει στην κατηγορία αυτή, ενώ κάθε εγγραφή αποτελεί μοναδικό συνδυασμό σημασίας και μορφής."
+	(is-a GRAPHEME)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass EL+GRAPHEME+CONTINUOUS "ΕΛΛΗΝΙΚΟΣ ΣΥΝΕΧΗΣ ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ"
+	(is-a GRAPHEME+CONTINUOUS)
+	(role concrete))
+
+(defclass EN+GRAPHEME+CONTINUOUS "ΑΓΓΛΙΚΟΣ ΣΥΝΕΧΗΣ ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ\n\nΤην κλάση αυτή απαρτίζουν λεξικές μονάδες της αγγλικής που χρησιμοποιούνται είτε σε ειδικές γλώσσες (όροι), είτε στον καθημερινό λόγο, όπως, για παράδειγμα, marketing, leasing, website, playlist, project, software, jazz, κλπ.\n\nΕφόσον υπάρχει μία ή περισσότερες λεξικές μονάδες της ελληνικής των οποίων αποτελούν μεταφραστικά ισοδύναμα, τότε η σύνδεση του ελληνικού με τον αγγλικό γραφηματικό τύπο καθίσταται δυνατή μέσω της σχέσης \"Has Translation\"."
+	(is-a GRAPHEME+CONTINUOUS)
+	(role concrete))
+
+(defclass LATIN+GRAPHEME+CONTINUOUS "ΛΑΤΙΝΙΚΟΣ ΣΥΝΕΧΗΣ ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ\n\nΤην κλάση αυτή απαρτίζουν λεξικές μονάδες της λατινικής που χρησιμοποιούνται είτε σε ειδικές γλώσσες (όροι), όπως για παράδειγμα, adagio, libido, moratorium, referendum, κλπ, ή ως παγιωμένες εκφράσεις, για παράδειγμα, gratis, incognito, κλπ.\n\nΕφόσον υπάρχει μία ή περισσότερες λεξικές μονάδες της ελληνικής των οποίων αποτελούν μεταφραστικά ισοδύναμα, τότε η σύνδεση του ελληνικού με τον αγγλικό γραφηματικό τύπο καθίσταται δυνατή μέσω της σχέσης \"Has Translation\"."
+	(is-a GRAPHEME+CONTINUOUS)
+	(role concrete))
+
+(defclass GRAPHEME+DISCONTINUOUS "ΑΣΥΝΕΧΗΣ ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ"
+	(is-a GRAPHEME)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass EN-MWE "ΑΓΓΛΙΚΟΣ ΑΣΥΝΕΧΗΣ ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ\n\nΤην κλάση αυτή απαρτίζουν λεξικές μονάδες της αγγλικής, οι οποίες υπερβαίνουν τα όρια της λέξης. Πρόκειται για φραστικά σύνολα (κυρίως ονοματικά) που χρησιμοποιούνται είτε σε ειδικές γλώσσες (όροι), όπως για παράδειγμα, blue chip, ή στον καθημερινό λόγο, για παράδειγμα, brain drain.\n\nΕφόσον υπάρχει μία ή περισσότερες λεξικές μονάδες της ελληνικής των οποίων αποτελούν μεταφραστικά ισοδύναμα, τότε η σύνδεση του ελληνικού με τον αγγλικό γραφηματικό τύπο καθίσταται δυνατή μέσω της σχέσης \"Has Translation\"."
+	(is-a GRAPHEME+DISCONTINUOUS)
+	(role concrete))
+
+(defclass EL-MWE
+	(is-a GRAPHEME+DISCONTINUOUS)
+	(role concrete))
+
+(defclass LATIN-MWE "ΛΑΤΙΝΙΚΟΣ ΑΣΥΝΕΧΗΣ ΓΡΑΦΗΜΑΤΙΚΟΣ ΤΥΠΟΣ\n\nΤην κλάση αυτή απαρτίζουν λεξικές μονάδες της λατινικής, οι οποίες υπερβαίνουν τα όρια της λέξης. Πρόκειται για φραστικά σύνολα που χρησιμοποιούνται είτε σε ειδικές γλώσσες (όροι), όπως για παράδειγμα, anorexia nervosa, delirium tremens, viola odorata, κλπ, ως επίσημες ονομασίες ασθενειών, φυτών, κλπ, ή ως παγιωμένες εκφράσεις, για παράδειγμα, a capella, a priori, grosso modo.\n\nΕφόσον υπάρχει μία ή περισσότερες λεξικές μονάδες της ελληνικής των οποίων αποτελούν μεταφραστικά ισοδύναμα, τότε η σύνδεση του ελληνικού με τον λατινικό γραφηματικό τύπο καθίσταται δυνατή μέσω της σχέσης \"Has Translation\"."
+	(is-a GRAPHEME+DISCONTINUOUS)
+	(role concrete))
+
+(defclass CONSTRUCTION
+	(is-a SIGNIFIER)
+	(role concrete))
+
+(defclass SIGNIFIED
+	(is-a USER)
+	(role concrete)
+	(multislot is_instantiated_in_language_by
+;+		(comment "is_instantiated_in_language(Concept, Word)")
+		(type INSTANCE)
+;+		(allowed-classes LEXICAL+UNIT)
+		(create-accessor read-write))
+	(single-slot is_the_state_of
+;+		(comment "is_the_state_of(αεργία, άεργος)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass IS-A+%CE%A7
+	(is-a SIGNIFIED)
+	(role concrete)
+	(multislot is_related_to.has+hyponym
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_related_to.has+hypernym
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_related_to
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+		(create-accessor read-write))
+	(single-slot has_gloss
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SCIENCE
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot is_practiced_by
+;+		(comment "is_practiced_by(διδασκαλία, δάσκαλος)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ARTIST)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass PROFESSIONAL
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot uses_tool
+		(type INSTANCE)
+;+		(allowed-classes EQUIPMENT)
+		(create-accessor read-write))
+	(single-slot payment
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot works_in
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot practices
+;+		(comment "για τη σχέση π.χ. ακτινολόγος-ακτινολογία")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSION SCIENCE ACTIVITY ART XI.ABOUT+ACTIVITY)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass HEALTH+PROFESSIONAL
+	(is-a PROFESSIONAL)
+	(role concrete)
+	(multislot makes_diagnosis
+;+		(comment "για τη σχέση γιατρού-διάγνωσης\nπ΄χ΄αιματολογική διάγνωση-αιματολόγος")
+		(type INSTANCE)
+;+		(allowed-classes MEDICAL+PROCESS)
+		(create-accessor read-write))
+	(multislot makes_examination
+;+		(comment "για τη σχέση εξέτασης γιατρού")
+		(type INSTANCE)
+;+		(allowed-classes MEDICAL+PROCESS)
+		(create-accessor read-write))
+	(multislot treats
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass LINGUIST
+	(is-a PROFESSIONAL)
+	(role concrete))
+
+(defclass EDUCATION+PROFESSIONAL
+	(is-a PROFESSIONAL)
+	(role concrete))
+
+(defclass TRADER
+	(is-a PROFESSIONAL)
+	(role concrete))
+
+(defclass PROFESSION
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot is_practiced_by
+;+		(comment "is_practiced_by(διδασκαλία, δάσκαλος)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ARTIST)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot IsTheAGENTof
+;+		(comment "Links a verb denoting an activity with a noun that is morphologically related with the verb; the noun is thus prototypically defined as the AGENT of the event.\n\nIsTheAGENTof(πότης,πίνω)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write)))
+
+(defclass PROCESS
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot afflicts_entity
+;+		(comment "The slot is used to denote the relation between a disease and the entity that suffers fron this disease\n\nafflicts_entity(disease,entity_suffering)\n\nafflicts_entity(βαρηκοϊα, βαρήκοος)\nafflicts_entity(σπογγώδης εγκεφαλοπάθεια, βοοειδές)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot needs_tool
+;+		(comment "Links a profession or an activity with the tool that the professional normally uses or the activity the tool is used for. Example:\n\nis_used_in(φτυάρι, σκάψιμο)")
+		(type INSTANCE)
+;+		(allowed-classes EQUIPMENT)
+		(create-accessor read-write))
+	(multislot has_Agent
+;+		(comment "It links a verb denoting an activity with a noun that is morphologically related with the verb; the verb is thus prototypically defined as an EVENT that usually has the noun as the AGENT of the event. \n\nhas_Agent(verb,Agent)\n\nhas_AGENT(πίνω, πότης)\nhas_AGENT(οδηγώ, οδηγός)\n\nhas_AGENT(συλλέγω, συλλέκτης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write))
+	(multislot is_the_quality_of
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(single-slot name_of_the_event
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot actor_of_the_event
+;+		(comment "Links an event to the entity that takes action in the event\n\nactor_of_the_event(Actor, Event)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_result
+;+		(comment "has_result(χάνω, χαμός)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MEDICAL+PROCESS
+	(is-a PROCESS)
+	(role concrete)
+	(multislot the_entity_is_afflicted_by
+;+		(comment "για τη σχέση αυτός που επηρεάζεται από μια κατάσταση\n\nπ.χ. ζαλισμένος-ζαλάδα\nθεραπεία-θεραπευμένος\nκαρδιοπάθεια-καρδιοπαθής")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(single-slot afflicts_body_part
+;+		(comment "The slot is used to denote the relation between a disease/condition and the part of the body that is afflicted by this disease:\n\naffllicts_body_part(disease,part_of_the_body)\n\nExamples:\naffllicts_body_part(πλατυποδία,πόδι)\naffllicts_body_part(πονοκέφαλος,κεφάλι)")
+		(type INSTANCE)
+;+		(allowed-classes BODY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot the_entity_afflicted
+;+		(comment "για τη σχέση αυτός που επηρεάζεται από μια κατάσταση\n\nπ.χ. ζαλισμένος-ζαλάδα\nθεραπεία-θεραπευμένος\nκαρδιοπάθεια-καρδιοπαθής")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass EDUCATIONAL+PROCESS
+	(is-a PROCESS)
+	(role concrete))
+
+(defclass NATURAL_PROCESS
+	(is-a PROCESS)
+	(role concrete))
+
+(defclass BODILY_PROCESS
+	(is-a PROCESS)
+	(role concrete))
+
+(defclass MATTER
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot is_the_result_of
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass MATERIAL
+	(is-a MATTER)
+	(role concrete)
+	(multislot isUsed-to-make
+;+		(comment "isUsed-to-make(ασήμι, ασημένιος)\n\nLinks a noun denoting material with an adjective (usually of the same etymological family) that denotes the characteristic \"is made of\"")
+		(type INSTANCE)
+;+		(allowed-classes ARTIFACT ABOUT+MATERIAL)
+		(create-accessor read-write)))
+
+(defclass COLOUR
+	(is-a MATTER)
+	(role concrete)
+	(single-slot has_effect
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MEDICINE
+	(is-a MATTER)
+	(role concrete))
+
+(defclass VOLITION
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass DECISION
+	(is-a VOLITION)
+	(role concrete))
+
+(defclass PERSUASION
+	(is-a VOLITION)
+	(role concrete))
+
+(defclass ACTIVITY
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot has_Patient
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot has_as_result
+;+		(comment "The slot is used to encode the relation that holds between a concept denoting the result of an activity and the activity itself. The result is instantiated by a Noun and the activity by a verb.\n\nExample")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot has_Agent
+;+		(comment "It links a verb denoting an activity with a noun that is morphologically related with the verb; the verb is thus prototypically defined as an EVENT that usually has the noun as the AGENT of the event. \n\nhas_Agent(verb,Agent)\n\nhas_AGENT(πίνω, πότης)\nhas_AGENT(οδηγώ, οδηγός)\n\nhas_AGENT(συλλέγω, συλλέκτης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write))
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass REACTION
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass BODILY_REACTION
+	(is-a REACTION)
+	(role concrete))
+
+(defclass CHANGE
+	(is-a ACTIVITY IS-A+%CE%A7)
+	(role concrete))
+
+(defclass HELP
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass COOPERATION
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass PRODUCTION
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass CREATION
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass COOKING
+	(is-a CREATION)
+	(role concrete))
+
+(defclass ACTIVITY-LEGAL
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass ACTIVITY-ILLEGAL
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass ACTIVITY-RESULT
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass ACTIVITY-DRESSING-UNDRESSING
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass ACTIVITY-ADMINISTRATIVE
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass ACTIVITY-DESTRUCTION
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass ACTIVITY-ART
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass FATIGUE
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass OBSTACLE
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass EXCHANGE
+	(is-a ACTIVITY)
+	(role concrete))
+
+(defclass LENDING-BORROWING
+	(is-a EXCHANGE)
+	(role concrete))
+
+(defclass ACTIVITY-FINANCIAL
+	(is-a EXCHANGE)
+	(role concrete))
+
+(defclass FISHING
+	(is-a ACTIVITY-FINANCIAL)
+	(role concrete))
+
+(defclass BUYING-SELLING
+	(is-a ACTIVITY-FINANCIAL)
+	(role concrete))
+
+(defclass PAYING
+	(is-a ACTIVITY-FINANCIAL)
+	(role concrete))
+
+(defclass PROPERTY
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass SIZE
+	(is-a PROPERTY)
+	(role concrete))
+
+(defclass %CE%94%CE%99%CE%91%CE%A3%CE%A4%CE%91%CE%A3%CE%97
+	(is-a SIZE)
+	(role concrete))
+
+(defclass PERSONALITY_TRAIT
+	(is-a PROPERTY)
+	(role concrete)
+	(single-slot has_polarity
+		(type INSTANCE)
+;+		(allowed-classes POLARITY)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot is_the_property_of
+;+		(comment "is_the_property_of(εξυπνάδα, έξυπνος)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass ROLE "ROLE is a temporary role entailed by one's office"
+	(is-a PROPERTY)
+	(role concrete)
+	(single-slot hasOffice_at
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SHAPE
+	(is-a PROPERTY)
+	(role concrete))
+
+(defclass PROPERTY-GENERAL
+	(is-a PROPERTY)
+	(role concrete)
+	(single-slot has_polarity
+		(type INSTANCE)
+;+		(allowed-classes POLARITY)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot is_the_property_of
+;+		(comment "is_the_property_of(εξυπνάδα, έξυπνος)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass FASHION
+	(is-a PROPERTY)
+	(role concrete))
+
+(defclass EMOTION
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot is_related_to.emotion-event
+;+		(comment "relates  an emotion to an emotional event, πχ \n\nis_related_to.emotion-event(φόβος, φοβάμαι)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+EMOTION+EVENT)
+		(create-accessor read-write))
+	(single-slot has_TARGET
+;+		(comment "TARGET is what the Experiencer's feelings or experiences are directed towards or based upon. The TARGET differs from a STIMULUS because the the former is not construed as being direcly responsible for causing the emotion.")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_Intensity
+		(type INSTANCE)
+;+		(allowed-classes INTENSITY)
+		(default [intensityMedium])
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_STIMULUS
+;+		(comment "has_STIMULUS(μίσος, μισητός)\n\nA stimulus evokes an emotion")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write))
+	(multislot is_related_to.emotion-behaviour
+;+		(comment "relates  an emotion to the behaviour or activity that causes this emotion πχ \n\nis_related_to.emotion-behaviour(φόβος, φοβίζω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+EMOTION+TRIGGERING+EVENT)
+		(create-accessor read-write))
+	(single-slot has_Experiencer
+;+		(comment "Links an emotion or emotional state with the person that feels this emotion\n\nhas_EXPERIENCER(ζήλια, ζηλιάρης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot is_manifested_by
+		(type INSTANCE)
+;+		(allowed-classes BODY ABOUT+EMOTION+EXPRESSION)
+		(create-accessor read-write))
+	(single-slot has_polarity
+		(type INSTANCE)
+;+		(allowed-classes POLARITY)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass BODY
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot the_bodypart_is_afflicted_by
+;+		(comment "Links a part of the body with the disease or condition that afflicts it:\n\nthe_bodypart_is_afflicted_by(αυτί, ωτίτιδα)\nthe_bodypart_is_afflicted_by(μάτι, μυωπία)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot IsBodyPartOf
+;+		(comment "IsBodyPartOf(προβοσκίδα, ελέφαντας)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass MOTION
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(single-slot is_the_manner_of
+;+		(comment "The slot is used to link an adverb with the adjective\n\nis_the_manner_of(γρήγορα, γρήγορος)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TRANSFER
+	(is-a MOTION)
+	(role concrete))
+
+(defclass MOTION+-+JOURNEY
+	(is-a MOTION)
+	(role concrete)
+	(multislot is_related_to.vehicle
+;+		(comment "is_related_to.vehicle(αυτοκινητιστικός, αυτοκίνητο)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass MOTION+-+SPEED
+	(is-a MOTION)
+	(role concrete))
+
+(defclass MOTION+-+DIRECTION
+	(is-a MOTION)
+	(role concrete)
+	(single-slot motion_directed_to
+;+		(comment "motion_directed_to(άνοδος, πάνω)")
+		(type INSTANCE)
+;+		(allowed-classes LOCATION)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MOTION+GENERAL
+	(is-a MOTION)
+	(role concrete))
+
+(defclass MOTION-SHOOT
+	(is-a MOTION)
+	(role concrete))
+
+(defclass ART
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot afflicts_entity
+;+		(comment "The slot is used to denote the relation between a disease and the entity that suffers fron this disease\n\nafflicts_entity(disease,entity_suffering)\n\nafflicts_entity(βαρηκοϊα, βαρήκοος)\nafflicts_entity(σπογγώδης εγκεφαλοπάθεια, βοοειδές)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot needs_tool
+;+		(comment "Links a profession or an activity with the tool that the professional normally uses or the activity the tool is used for. Example:\n\nis_used_in(φτυάρι, σκάψιμο)")
+		(type INSTANCE)
+;+		(allowed-classes EQUIPMENT)
+		(create-accessor read-write))
+	(multislot is_practiced_by
+;+		(comment "is_practiced_by(διδασκαλία, δάσκαλος)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ARTIST)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot is_the_quality_of
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(single-slot name_of_the_event
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Product
+;+		(comment "The slot is used to encode the relation between an artistic product and the relative art:\n\nIs_the_Product_of(ποίηση, ποίημα)")
+		(type INSTANCE)
+;+		(allowed-classes ARTIFACT-ART)
+		(create-accessor read-write))
+	(single-slot has_result
+;+		(comment "has_result(χάνω, χαμός)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TIME
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass ABSOLUTE+TIME
+	(is-a TIME)
+	(role concrete)
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_related_to.time
+;+		(comment "is_related_to.time(χθεσινός, χθες)")
+		(type INSTANCE)
+;+		(allowed-classes TIME)
+		(create-accessor read-write)))
+
+(defclass RELATIVE+TIME
+	(is-a TIME)
+	(role concrete))
+
+(defclass REFERENCE+TO+PERIOD
+	(is-a TIME)
+	(role concrete))
+
+(defclass DURATION
+	(is-a TIME)
+	(role concrete))
+
+(defclass FREQUENCY
+	(is-a TIME)
+	(role concrete))
+
+(defclass NUMBER
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass COGNITION
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot has_Agent
+;+		(comment "It links a verb denoting an activity with a noun that is morphologically related with the verb; the verb is thus prototypically defined as an EVENT that usually has the noun as the AGENT of the event. \n\nhas_Agent(verb,Agent)\n\nhas_AGENT(πίνω, πότης)\nhas_AGENT(οδηγώ, οδηγός)\n\nhas_AGENT(συλλέγω, συλλέκτης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write))
+	(multislot is_related_to.time
+;+		(comment "is_related_to.time(χθεσινός, χθες)")
+		(type INSTANCE)
+;+		(allowed-classes TIME)
+		(create-accessor read-write))
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass REPORTING
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass IMAGINATION
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass MEMORY
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass THINKING
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass ATTENTION
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass CARE-NEGLIGENCE
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass EXPLANATION
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass UNDERSTANDING
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass LEARNING
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass KNOWING
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass BELIEF
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass FINDING
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass EXAMINING
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass EXPRESSION
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass OPINION
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass PROOF
+	(is-a COGNITION)
+	(role concrete))
+
+(defclass GAME
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot entails
+;+		(comment "entails(χιονίζει, χιόνι)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass SPORTS
+	(is-a GAME)
+	(role concrete)
+	(multislot has_Agent
+;+		(comment "It links a verb denoting an activity with a noun that is morphologically related with the verb; the verb is thus prototypically defined as an EVENT that usually has the noun as the AGENT of the event. \n\nhas_Agent(verb,Agent)\n\nhas_AGENT(πίνω, πότης)\nhas_AGENT(οδηγώ, οδηγός)\n\nhas_AGENT(συλλέγω, συλλέκτης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write)))
+
+(defclass GAMBLING "ΤΥΧΕΡΟ ΠΑΙΧΝΙΔΙ"
+	(is-a GAME)
+	(role concrete)
+	(multislot hasParticipant
+;+		(comment "has_participant(event,Participant)\n\nThe slot links an event to the entities that participate in it\n\nhas_participant(δίκη,αντίδικος)\nhas_participant(γάμος, καλεσμένος)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write)))
+
+(defclass MENTAL+GAME
+	(is-a GAME)
+	(role concrete)
+	(multislot hasParticipant
+;+		(comment "has_participant(event,Participant)\n\nThe slot links an event to the entities that participate in it\n\nhas_participant(δίκη,αντίδικος)\nhas_participant(γάμος, καλεσμένος)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write)))
+
+(defclass GAME-ACTIVITY
+	(is-a GAME)
+	(role concrete))
+
+(defclass NATURAL+PHENOMENON
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot entails
+;+		(comment "entails(χιονίζει, χιόνι)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ARTIFACT
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot is_used_for
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_used_in
+;+		(comment "για τη σχέση διαδικασίας-εργαλείου\nπ.χ. καρδιογράφος-καρδιογράφημα")
+		(type INSTANCE)
+;+		(allowed-classes PROCESS EVENT PROFESSION ART GAME ACTIVITY)
+		(create-accessor read-write))
+	(multislot IsMadeof
+;+		(comment "The relation \"is_made_of(A, N)\" is used to link two instances, classified under the grammatical categories of A(djective) and N(oun). The N denotes a material, and the A denotes the property of being made by that material. Examples:\nisMadeOf(τσιμεντένιος, τσιμέντο)\nisMadeOf(ασημένιος, ασήμι)")
+		(type INSTANCE)
+;+		(allowed-classes MATERIAL)
+		(create-accessor read-write))
+	(multislot is_used_by
+;+		(comment "Links a tool with the professiona who typically uses this tool\n\nis_used_by(πιάνο, πιανίστας)\nis_used_by(νυστέρι, χειρουργός)\nis_used_by(ψαλλίδα, κηπουρός)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ARTIST+-+MUSICIAN ATHLETE HUMAN)
+		(create-accessor read-write))
+	(multislot IsLocatedIn
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot isMadeBy
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass CONTAINER
+	(is-a ARTIFACT)
+	(role concrete))
+
+(defclass EQUIPMENT
+	(is-a ARTIFACT)
+	(role concrete)
+	(multislot is_used_by
+;+		(comment "για τη σχέση επαγγελματία-εργαλείου\n\nis_used_by(\nχειρουργός-νυστέρι")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ARTIST+-+MUSICIAN ATHLETE HUMAN)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes BODY FACILITY GEOGRAPHICAL_LOCATION GEOPOLITICAL+ENTITY VEHICLE ABOUT+BODY CLOTHING EQUIPMENT)
+		(create-accessor read-write)))
+
+(defclass MEDICAL+EQUIPMENT
+	(is-a EQUIPMENT)
+	(role concrete))
+
+(defclass SPORTS+EQUIPMENT
+	(is-a EQUIPMENT)
+	(role concrete))
+
+(defclass MUSICAL+INSTRUMENT
+	(is-a EQUIPMENT)
+	(role concrete)
+	(multislot hasProperty
+;+		(comment "hasProperty(έξυπνος, εξυπνάδα)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(single-slot has_accessory
+;+		(comment "It links an object X with an accessory Y; the accessory is needed in order for the object to be complete or function properly\n\nhas_accessory(βιολί, δοξάρι)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CLEANING_EQUIP
+	(is-a EQUIPMENT)
+	(role concrete))
+
+(defclass WEAPON
+	(is-a EQUIPMENT)
+	(role concrete))
+
+(defclass LINEN
+	(is-a ARTIFACT)
+	(role concrete))
+
+(defclass ARTIFACT-ART
+	(is-a ARTIFACT)
+	(role concrete)
+	(single-slot Is_the_Product_of
+;+		(comment "The slot is used to encode the relation between a type of art and the relative artistc product:\n\nIs_the_Product_of(ποίημα,ποίηση)")
+		(type INSTANCE)
+;+		(allowed-classes ART)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CLOTHING "clothing (from wikipedia)\n\nClothing (also known as clothes and attire) is fiber and textile material worn on the body. The wearing of clothing is mostly restricted to human beings and is a feature of nearly all human societies. The amount and type of clothing worn depends on body type, social, and geographic considerations. Some clothing can be gender-specific.\n\nPhysically, clothing serves many purposes: it can serve as protection from the elements, and can enhance safety during hazardous activities such as hiking and cooking. It protects the wearer from rough surfaces, rash-causing plants, insect bites, splinters, thorns and prickles by providing a barrier between the skin and the environment. Clothes can insulate against cold or hot conditions. Further, they can provide a hygienic barrier, keeping infectious and toxic materials away from the body. Clothing also provides protection from ultraviolet radiation. Wearing clothes is also a social norm, as being deprived of clothing in front of others may be embarrassing, or not wearing clothes in public to the extent that genitals, breasts or buttocks are visible could be seen as indecent exposure."
+	(is-a ARTIFACT)
+	(role concrete)
+	(multislot garment_used_by
+;+		(comment "It links a noun X denoting a garment with a noun Y that denotes a (human) entity; X is thus prototypically defined as the garment normally worn by Y. \n\ngarment_used_by(ράσο,παπάς)\ngarment_used_by(σκούφος,σεφ)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL HUMAN FAMILY+MEMBER ATHLETE)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes BODY FACILITY GEOGRAPHICAL_LOCATION GEOPOLITICAL+ENTITY VEHICLE ABOUT+BODY CLOTHING EQUIPMENT)
+		(create-accessor read-write))
+	(multislot wears_garment
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass VEHICLE "vehicle (from wikipedia)\n\nA vehicle (from Latin: vehiculum[1]) is a mobile machine that transports people or cargo. Typical vehicles include wagons, bicycles, motor vehicles (motorcycles, trucks, buses), railed vehicles (trains, trams), watercraft (ships, boats), aircraft and spacecraft.[2]"
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot uses_vehicle
+		(type INSTANCE)
+;+		(allowed-classes LIVING+ENITY)
+		(create-accessor read-write))
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot drives_vehicle
+;+		(comment "Links a noun X denoting an entity with a noun Y that denotes a vehicle; the noun X is thus prototypically defined as an entity that drives the vehicle (the driver of the vehicle). \n\ndrives_vehicle(πιλότος, αεροσκάφος)\ndrives_vehicle(καπετάνιος, πλοίο)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7 PROFESSIONAL)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes BODY FACILITY GEOGRAPHICAL_LOCATION GEOPOLITICAL+ENTITY VEHICLE ABOUT+BODY CLOTHING EQUIPMENT)
+		(create-accessor read-write)))
+
+(defclass MORALITY
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass REVENGE
+	(is-a MORALITY)
+	(role concrete))
+
+(defclass RELIGION "religion (from wikipedia)\n\nReligion is any cultural system of designated behaviors and practices, world views, texts, sanctified places, ethics, or organizations, that relate humanity to the supernatural or transcendental. Religions relate humanity to what anthropologist Clifford Geertz has referred to as a cosmic \"order of existence\""
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass ENTITY
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass GEOPOLITICAL+ENTITY
+	(is-a ENTITY)
+	(role concrete)
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_the_habitat_of
+;+		(comment "The slot is used to encode the relation that holds between a location (habitat) and its usual inhabitant.\n\nis_the_habitat_of(περιστερώνας, περιστέρι)\n\nis_the_habitat_of(χωριό, χωρικός)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot isPartOf
+;+		(comment "Links an integral part of an Object  or Entity to that object or entity, i.e., \n\nisPartOf(χερούλι, κούπα)")
+		(type INSTANCE)
+;+		(allowed-classes BODY FACILITY GEOGRAPHICAL_LOCATION GEOPOLITICAL+ENTITY VEHICLE ABOUT+BODY CLOTHING EQUIPMENT)
+		(create-accessor read-write)))
+
+(defclass PLANT
+	(is-a ENTITY)
+	(role concrete)
+	(multislot has_fruit
+;+		(comment "has_fruit(μηλιά, μήλο)")
+		(type INSTANCE)
+;+		(allowed-classes PLANT-FRUIT-NUT)
+		(create-accessor read-write))
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass LIVING+ENITY
+	(is-a ENTITY)
+	(role concrete)
+	(multislot has_as_habitat
+;+		(comment "The slot is used to encode the relation that holds between an entity and the location (habitat) it typically lives in (has_as_habitat(semInstance,FACILITY))\n\nExamples:\nhas_as_habitat(πέστροφα,ποτάμι)\nhas_as_habitat(περιστέρι, περιστερώνας)")
+		(type INSTANCE)
+;+		(allowed-classes FACILITY GEOGRAPHICAL_LOCATION)
+		(create-accessor read-write))
+	(multislot IsTheAGENTof
+;+		(comment "Links a verb denoting an activity with a noun that is morphologically related with the verb; the noun is thus prototypically defined as the AGENT of the event.\n\nIsTheAGENTof(πότης,πίνω)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write)))
+
+(defclass HUMAN
+	(is-a LIVING+ENITY)
+	(role concrete))
+
+(defclass FAMILY+MEMBER
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass ATHLETE
+	(is-a HUMAN)
+	(role concrete)
+	(multislot uses_tool
+		(type INSTANCE)
+;+		(allowed-classes EQUIPMENT)
+		(create-accessor read-write))
+	(single-slot plays_sport
+		(type INSTANCE)
+;+		(allowed-classes SPORTS)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ARTIST
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass AGENT+OF+ACTIVITY
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass AGENT+OF+ACTIVITY+ILLEGAL
+	(is-a AGENT+OF+ACTIVITY)
+	(role concrete))
+
+(defclass AGENT+OF+ACTIVITY+MORAL
+	(is-a AGENT+OF+ACTIVITY)
+	(role concrete))
+
+(defclass AGENT_OF_ACTIVITY_MOTION
+	(is-a AGENT+OF+ACTIVITY)
+	(role concrete))
+
+(defclass AGENT_OF_ACTIVITY_FINANCIAL
+	(is-a AGENT+OF+ACTIVITY)
+	(role concrete))
+
+(defclass ENTITY_OF_ACTIVITY_LEGAL
+	(is-a AGENT+OF+ACTIVITY)
+	(role concrete))
+
+(defclass AGENT+OF+COGNITIVE+PROCESS
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass SUPPORTER
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass AGENT+OF+GAME
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass AGENT+RELIGIOUS
+	(is-a HUMAN)
+	(role concrete)
+	(single-slot believes_in
+;+		(comment "The slot is used to encode the relation between an entity denoting a supporter or fan of a belief, religion, etc and the , religion, theory, etc.\n\nbelieves_in(χριστιανός, χριστιανισμός)")
+		(type INSTANCE)
+;+		(allowed-classes RELIGION THEORY)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass NATIONAL
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass ARTIST+-+MUSICIAN
+	(is-a HUMAN)
+	(role concrete)
+	(multislot plays_music
+;+		(comment "plays_music(Musician,Music)\n\nplays_music(τζαζίστας,μουσική)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot plays_musical-Instrument
+;+		(comment "plays(βιολιστής, βιολί)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass AGENT+OF+VOLITIONAL+ACT
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass PATIENT
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass EXPERIENCER
+	(is-a HUMAN)
+	(role concrete)
+	(single-slot has_Experiencer
+;+		(comment "Links an emotion or emotional state with the person that feels this emotion\n\nhas_EXPERIENCER(ζήλια, ζηλιάρης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass COGNISER
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass LOCUTOR
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass AGENT_OF_LENDING-BORROWING
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass PATIENT_OF_ACTIVITY
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass RECIPIENT
+	(is-a HUMAN)
+	(role concrete))
+
+(defclass ANIMAL
+	(is-a LIVING+ENITY)
+	(role concrete)
+	(multislot has_body_part
+;+		(comment "The slot is used to link a concept denoting a part of the body with another concept that denotes the animal that typically has this bodypart:\n\nIsBodyPartOf(προβοσκίδα, ελέφαντας)")
+		(type INSTANCE)
+;+		(allowed-classes BODY)
+		(create-accessor read-write)))
+
+(defclass FUNGUS
+	(is-a LIVING+ENITY)
+	(role concrete))
+
+(defclass ORGANISATION
+	(is-a ENTITY)
+	(role concrete)
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_the_Office_of
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass ABSTRACT+ENTITY
+	(is-a ENTITY)
+	(role concrete))
+
+(defclass GROUP
+	(is-a ENTITY)
+	(role concrete)
+	(multislot has_as_habitat
+;+		(comment "The slot is used to encode the relation that holds between an entity and the location (habitat) it typically lives in (has_as_habitat(semInstance,FACILITY))\n\nExamples:\nhas_as_habitat(πέστροφα,ποτάμι)\nhas_as_habitat(περιστέρι, περιστερώνας)")
+		(type INSTANCE)
+;+		(allowed-classes FACILITY GEOGRAPHICAL_LOCATION)
+		(create-accessor read-write)))
+
+(defclass HOLY+ENTIT%CE%A5
+	(is-a ENTITY)
+	(role concrete))
+
+(defclass PLANT-FRUIT-NUT
+	(is-a ENTITY)
+	(role concrete)
+	(multislot is_the_fruit_of
+;+		(comment "Links the fruit to the tree\n\nis_the_fruit_of(μήλο, μηλιά)")
+		(type INSTANCE)
+;+		(allowed-classes PLANT)
+		(create-accessor read-write)))
+
+(defclass EVENT
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot has_Agent
+;+		(comment "It links a verb denoting an activity with a noun that is morphologically related with the verb; the verb is thus prototypically defined as an EVENT that usually has the noun as the AGENT of the event. \n\nhas_Agent(verb,Agent)\n\nhas_AGENT(πίνω, πότης)\nhas_AGENT(οδηγώ, οδηγός)\n\nhas_AGENT(συλλέγω, συλλέκτης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write))
+	(multislot hasParticipant
+;+		(comment "has_participant(event,Participant)\n\nThe slot links an event to the entities that participate in it\n\nhas_participant(δίκη,αντίδικος)\nhas_participant(γάμος, καλεσμένος)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write)))
+
+(defclass SOCIAL+EVENT
+	(is-a EVENT)
+	(role concrete)
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SPORTS+EVENT
+	(is-a EVENT)
+	(role concrete))
+
+(defclass CAUSING+EMOTION+EVENT
+	(is-a EVENT)
+	(role concrete)
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot entails_emotion
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass EDUCATION+EVENT
+	(is-a EVENT)
+	(role concrete)
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CHANGE+EVENT
+	(is-a EVENT)
+	(role concrete)
+	(single-slot is_the_action_of
+;+		(comment "Links the predicative noun with the corresponding verb\n\nis_the_action_of(ολολήρωση, ολοκληρώνω)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 LEXICAL+UNIT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ILLEGAL+EVENT
+	(is-a EVENT)
+	(role concrete))
+
+(defclass FINANCIAL+EVENT
+	(is-a EVENT)
+	(role concrete))
+
+(defclass POLITICAL+EVENT
+	(is-a EVENT)
+	(role concrete))
+
+(defclass RELIGIOUS_EVENT
+	(is-a EVENT)
+	(role concrete))
+
+(defclass ARTS_EVENT
+	(is-a EVENT)
+	(role concrete))
+
+(defclass LANGUAGE
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot has_dialect
+;+		(comment "has_dialect_of(language,language)\n\nhas_dialect(Ελληνική, κατωιταλική)")
+		(type INSTANCE)
+;+		(allowed-classes LANGUAGE)
+		(create-accessor read-write))
+	(multislot isMemberOf
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot is_a_dialect_of
+;+		(comment "is_a_dialect_of(dialect, language)")
+		(type INSTANCE)
+;+		(allowed-classes LANGUAGE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass NUTRITION
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(single-slot has_Ingredients
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass LOCATION
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot hasPart
+;+		(comment "Links an Artifact with its parts\n\nhasPart(αυτοκίνητο,τιμόνι)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write))
+	(single-slot IsLocated
+;+		(comment "IsLocated(διπλανός, δίπλα)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass FACILITY
+	(is-a LOCATION)
+	(role concrete)
+	(multislot is_the_workplace_of
+;+		(comment "is_the_workplace_of(φαρμακείο, φαρμακοποιός)\n\nis_the_workplace_of(σχολείο, καθηγητής)\n\n\nis_the_workplace_of(φροντιστήριο, καθηγητής)\n\nis_the_workplace_of(πανεπιστήμιο, καθηγητής)")
+		(type INSTANCE)
+;+		(allowed-classes PROFESSIONAL ROLE)
+		(create-accessor read-write))
+	(multislot is_the_locationOfEvent
+;+		(comment "The slot is used to denote a relation betwee a location ot facility and the event that takes place in it.\n\nis_the_locationOfEvent(γήπεδο, αγώνας)\nis_the_locationOfEvent(θέατρο, παράσταση)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot is_the_habitat_of
+;+		(comment "The slot is used to encode the relation that holds between a location (habitat) and its usual inhabitant.\n\nis_the_habitat_of(περιστερώνας, περιστέρι)\n\nis_the_habitat_of(χωριό, χωρικός)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass GEOGRAPHICAL_LOCATION
+	(is-a LOCATION)
+	(role concrete)
+	(multislot is_the_habitat_of
+;+		(comment "The slot is used to encode the relation that holds between a location (habitat) and its usual inhabitant.\n\nis_the_habitat_of(περιστερώνας, περιστέρι)\n\nis_the_habitat_of(χωριό, χωρικός)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass GEOPOLITICAL_LOCATION
+	(is-a LOCATION)
+	(role concrete))
+
+(defclass EXTRA-TERRESTRIAL
+	(is-a LOCATION)
+	(role concrete))
+
+(defclass MEASUREMENT_UNIT
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass SENSATION
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(single-slot is_related_to.bodyPart
+;+		(comment "is_related_to.bodyPart(πνευμονικός, πνεύμονας)")
+		(type INSTANCE)
+;+		(allowed-classes BODY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_related_to.sensation
+;+		(comment "is_related_to.sensation(ακούω, ακοή)\nis_related_to.sensation(βλέπω, όραση)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ABILITY
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(multislot is_the_property_of
+;+		(comment "is_the_property_of(εξυπνάδα, έξυπνος)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_related_to.abilityFeature
+;+		(comment "is_related-to.abilityFeature(ability,Feature)\n\nis_related-to.abilityFeature(αμβλύνοια,νους)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass POSSESSION
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass STATE
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass MENTAL+STATE
+	(is-a STATE)
+	(role concrete))
+
+(defclass PHYSICAL+STATE
+	(is-a STATE)
+	(role concrete))
+
+(defclass FAMILY+STATE
+	(is-a STATE)
+	(role concrete)
+	(multislot IsTheAGENTof
+;+		(comment "Links a verb denoting an activity with a noun that is morphologically related with the verb; the noun is thus prototypically defined as the AGENT of the event.\n\nIsTheAGENTof(πότης,πίνω)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write))
+	(multislot hasMember
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass FREEDOM
+	(is-a STATE)
+	(role concrete))
+
+(defclass CAUSATION
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass APPRAISAL
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass APPRAISAL_EVOKING_EVENT
+	(is-a APPRAISAL)
+	(role concrete))
+
+(defclass PUNISHMENT
+	(is-a APPRAISAL)
+	(role concrete))
+
+(defclass REWARD
+	(is-a APPRAISAL)
+	(role concrete))
+
+(defclass APPROVAL
+	(is-a APPRAISAL)
+	(role concrete))
+
+(defclass RELATIONSHIP
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass CONFLICT
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass THEORY
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass ORDER
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass QUANTITY
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass LIFE
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass GOVERNMENT
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(single-slot has_polarity
+		(type INSTANCE)
+;+		(allowed-classes POLARITY)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot entity_that_rules
+;+		(comment "entity_that_rules(Entity,Government)\n\nentity_that_rules(ολιγάρχης,ολογαρχία)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass COVER
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass VALUE
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass LOOSING
+	(is-a VALUE)
+	(role concrete))
+
+(defclass RESULT
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass LAW
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass ART+-+STYLE
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass THERAPY
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass HEALTH+-+ILLNESS
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass BIOLOGICAL+PROCESS
+	(is-a HEALTH+-+ILLNESS)
+	(role concrete))
+
+(defclass PLAN
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass MONEY
+	(is-a IS-A+%CE%A7)
+	(role concrete)
+	(single-slot is_payment_to
+;+		(comment "is_payment_to(φακελάκι, γιατρός)\n\nis_payment_to(αποδοχές, εργαζόμενος)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_payment_for
+;+		(comment "is_payment_for(εύρετρα, εύρεση)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SPEED
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass STANCE
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass UNITY
+	(is-a IS-A+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+%CE%A7
+	(is-a SIGNIFIED)
+	(role concrete)
+	(multislot is_term_of
+		(type INSTANCE)
+;+		(allowed-classes SCIENCE)
+		(create-accessor read-write))
+	(multislot is_related_to
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot is_related_to.belongs_to
+;+		(comment "belongs_to(φοιτητικός, φοιτητής)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write))
+	(single-slot has_gloss
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ABOUT+HEALTH-ILLNESS
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(multislot afflicts_entity
+;+		(comment "The slot is used to denote the relation between a disease and the entity that suffers fron this disease\n\nafflicts_entity(disease,entity_suffering)\n\nafflicts_entity(βαρηκοϊα, βαρήκοος)\nafflicts_entity(σπογγώδης εγκεφαλοπάθεια, βοοειδές)")
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass ABOUT+ILLNESS "ΠΕΡΙ ΜΗ ΥΓΙΟΥΣ ΚΑΤΑΣΤΑΣΗΣ\n\nΗ κλάση αυτή στηρίχθηκε στην αντίστοιχη κλάση που πρότεινε η Σ. Μαρκαντωνάτου. Ένα μέρος των στιγμιοτύπων έχει παραμείνει, ωστόσο έχουν γίνει σημαντικές αλλαγές ως προς τον αριθμό και την κωδικοποίηση (σημασιολογικές σχέσεις) των τελικών στιγμιοτύπων."
+	(is-a ABOUT+HEALTH-ILLNESS)
+	(role concrete))
+
+(defclass ABOUT+HEALING
+	(is-a ABOUT+HEALTH-ILLNESS)
+	(role concrete))
+
+(defclass ABOUT+DIAGNOSIS
+	(is-a ABOUT+HEALTH-ILLNESS)
+	(role concrete))
+
+(defclass ABOUT+HEALTH
+	(is-a ABOUT+HEALTH-ILLNESS)
+	(role concrete))
+
+(defclass ABOUT+BODY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+LANGUAGE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+ART
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+ARTISTIC+PROPERTY
+	(is-a ABOUT+ART)
+	(role concrete))
+
+(defclass ABOUT+ART-RELATED+ACTION
+	(is-a ABOUT+ART)
+	(role concrete))
+
+(defclass ABOUT+MANNER+ARTISTIC
+	(is-a ABOUT+ART)
+	(role concrete))
+
+(defclass ABOUT+APPRAISAL
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(multislot entails_appraisal
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+APPRAISAL)
+		(create-accessor read-write))
+	(single-slot has_polarity
+		(type INSTANCE)
+;+		(allowed-classes POLARITY)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ABOUT+APPRAISAL_EVENT
+	(is-a ABOUT+APPRAISAL)
+	(role concrete))
+
+(defclass ABOUT+APPRAISAL_EVOKING_EVENT
+	(is-a ABOUT+APPRAISAL)
+	(role concrete))
+
+(defclass ABOUT+EMOTION
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(single-slot has_Intensity
+		(type INSTANCE)
+;+		(allowed-classes INTENSITY)
+		(default [intensityMedium])
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot is_manifested_by
+		(type INSTANCE)
+;+		(allowed-classes BODY ABOUT+EMOTION+EXPRESSION)
+		(create-accessor read-write))
+	(single-slot has_polarity
+		(type INSTANCE)
+;+		(allowed-classes POLARITY)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ABOUT+EMOTION+EXPRESSION
+	(is-a ABOUT+EMOTION)
+	(role concrete))
+
+(defclass ABOUT+EMOTION+TRIGGERING+EVENT
+	(is-a ABOUT+EMOTION)
+	(role concrete))
+
+(defclass ABOUT+MOOD
+	(is-a ABOUT+EMOTION)
+	(role concrete))
+
+(defclass ABOUT+EMOTION+TRIGGER
+	(is-a ABOUT+EMOTION)
+	(role concrete))
+
+(defclass ABOUT+EMOTION+EVENT
+	(is-a ABOUT+EMOTION)
+	(role concrete)
+	(multislot is_related_to.has+troponym
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))
+
+(defclass ABOUT+EMOTION+EXPERIENCER
+	(is-a ABOUT+EMOTION)
+	(role concrete))
+
+(defclass AMOUT+MANNER+EMOTIONAL
+	(is-a ABOUT+EMOTION)
+	(role concrete))
+
+(defclass ABOUT+EMOTION+EXPRESSION+EVENT
+	(is-a ABOUT+EMOTION)
+	(role concrete))
+
+(defclass VII.ABOUT+TIME
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MOTION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MEANS+OF+TRANSPORTATION
+	(is-a ABOUT+MOTION)
+	(role concrete))
+
+(defclass ABOUT_MOTION_EVENT
+	(is-a ABOUT+MOTION)
+	(role concrete))
+
+(defclass ABOUT+EDUCATION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+EDUCATION+EVENT
+	(is-a ABOUT+EDUCATION)
+	(role concrete))
+
+(defclass ABOUT+NUTRITION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+FOOD
+	(is-a ABOUT+NUTRITION)
+	(role concrete))
+
+(defclass ABOUT+COLOUR
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(single-slot hasColour
+;+		(comment "Is used to denote the relation between an adjective A and a noun N denoting colour:\n\nhasColour(μαύρος, μαύρο)")
+		(type INSTANCE)
+;+		(allowed-classes COLOUR)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot IsTheColourOf.Object
+;+		(comment "IsTheColourOf.Object(κόκκινο, παπαρούνα)")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot IsTheColourOf
+;+		(comment "IsTheColourOf(μαύρο, μαύρος)\n\nΘα μπορούσε να χρησιμοποιηθεί και για την σύνδεση αντικειμένων με χαρακτηριστικό χρώμα και το χρώμα αυτό. Παράδειγμα\nhasColour(πορτοκάλι, πορτοκαλί)\n\nIsTheColourOf(πορτοκαλί, πορτοκάλι)")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+COLOUR)
+		(create-accessor read-write)))
+
+(defclass XV.ABOUT+COGNITION
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(multislot the_effect
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7 IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass ABOUT+EVENT+MENTAL
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+KNOWING
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+MODE+MENTAL
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+ATTENTION
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+IMAGINATION
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+THINKING
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+UNDERSTANDING
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+MEMORY
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+EXAMINING
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+FINDING
+	(is-a XV.ABOUT+COGNITION)
+	(role concrete))
+
+(defclass ABOUT+ABILITY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+ABILITY+EVENT
+	(is-a ABOUT+ABILITY)
+	(role concrete))
+
+(defclass ABOUT+ABILITY+MODE
+	(is-a ABOUT+ABILITY)
+	(role concrete))
+
+(defclass ABOUT+ABILITY+PROPERTY
+	(is-a ABOUT+ABILITY)
+	(role concrete))
+
+(defclass ABOUT+ABILITY+PHRASE
+	(is-a ABOUT+ABILITY)
+	(role concrete))
+
+(defclass XI.ABOUT+ACTIVITY
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(multislot the_entity_that_causes
+;+		(comment "για τη σχέση αυτός που προκαλεί κάτι\n\nπ.χ. τραυματικός=αυτός που προκαλεί τραύμα")
+		(type INSTANCE)
+;+		(allowed-classes ABOUT+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass ABOUT_REACTION
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT_BODILY_REACTION
+	(is-a ABOUT_REACTION)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-GIVING
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-COOKING
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT_SELLING-BUYING
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-HELPING
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-CHANGE
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-LENDING-BORROWING
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-COOPERATION
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+PAYING
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT_PRODUCTION
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-GENERAL
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+AGENT
+	(is-a ABOUT+ACTIVITY-GENERAL)
+	(role concrete))
+
+(defclass ABOUT_ACTIVITY_FEATURE
+	(is-a ABOUT+ACTIVITY-GENERAL)
+	(role concrete))
+
+(defclass ABOUT_ACTIVITY_MODE
+	(is-a ABOUT+ACTIVITY-GENERAL)
+	(role concrete))
+
+(defclass ABOUT_PROTECTION
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-FINANCIAL
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-CREATION
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-DRESSING-UNDRESSING
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY-GAME
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY_METHOD
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY_LEGAL
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+ACTIVITY_ILLEGAL
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT_FATIGUE
+	(is-a XI.ABOUT+ACTIVITY)
+	(role concrete))
+
+(defclass ABOUT+PROFESSION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MATERIAL
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(multislot IsMadeof
+;+		(comment "The relation \"is_made_of(A, N)\" is used to link two instances, classified under the grammatical categories of A(djective) and N(oun). The N denotes a material, and the A denotes the property of being made by that material. Examples:\nisMadeOf(τσιμεντένιος, τσιμέντο)\nisMadeOf(ασημένιος, ασήμι)")
+		(type INSTANCE)
+;+		(allowed-classes MATERIAL)
+		(create-accessor read-write)))
+
+(defclass ABOUT+REPORTING
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+COMMUNICATION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT_COMMUNICATION_EVENT
+	(is-a ABOUT+COMMUNICATION)
+	(role concrete))
+
+(defclass ABOUT_COMMUNICATION_AGENT
+	(is-a ABOUT+COMMUNICATION)
+	(role concrete))
+
+(defclass ABOUT_COMMUNICATION_MEANS
+	(is-a ABOUT+COMMUNICATION)
+	(role concrete))
+
+(defclass ABOUT+EXPRESSION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MORALITY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MORALITY+EVENT
+	(is-a ABOUT+MORALITY)
+	(role concrete))
+
+(defclass ABOUT+MORALITY+PROPERTY
+	(is-a ABOUT+MORALITY)
+	(role concrete)
+	(multislot has_the_quality
+		(type INSTANCE)
+;+		(allowed-classes IS-A+%CE%A7)
+		(create-accessor read-write)))
+
+(defclass ABOUT+MORALITY+MODE
+	(is-a ABOUT+MORALITY)
+	(role concrete))
+
+(defclass ABOUT+SENSATION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+FAMILY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+RELIGION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+RELIGION+EVENTS
+	(is-a ABOUT+RELIGION)
+	(role concrete))
+
+(defclass ABOUT+CHANGE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass XVI.ABOUT+VOLITION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+DECISION
+	(is-a XVI.ABOUT+VOLITION)
+	(role concrete))
+
+(defclass ABOUT+PERSUASION
+	(is-a XVI.ABOUT+VOLITION)
+	(role concrete))
+
+(defclass ABOUT+ATTITUDE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+ORDER
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+CONFLICT
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+EVENT
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(multislot has_Agent
+;+		(comment "It links a verb denoting an activity with a noun that is morphologically related with the verb; the verb is thus prototypically defined as an EVENT that usually has the noun as the AGENT of the event. \n\nhas_Agent(verb,Agent)\n\nhas_AGENT(πίνω, πότης)\nhas_AGENT(οδηγώ, οδηγός)\n\nhas_AGENT(συλλέγω, συλλέκτης)")
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+		(create-accessor read-write)))
+
+(defclass ABOUT_EVENT_PARTICIPANT
+	(is-a ABOUT+EVENT)
+	(role concrete)
+	(multislot participates_in
+		(type INSTANCE)
+;+		(allowed-classes EVENT)
+		(create-accessor read-write)))
+
+(defclass ABOUT_SENSATION_EVENT
+	(is-a ABOUT+EVENT)
+	(role concrete))
+
+(defclass ABOUT+SPORTS
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT_SPORTS_%CE%91CTIVITY
+	(is-a ABOUT+SPORTS)
+	(role concrete))
+
+(defclass ABOUT_SPORTS_REL
+	(is-a ABOUT+SPORTS)
+	(role concrete))
+
+(defclass ABOUT+LIFE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+LOCATION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+POSSESSION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+COVER
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+STANCE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+APPEARANCE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass APPEARANCE-PROPERTY
+	(is-a ABOUT+APPEARANCE)
+	(role concrete))
+
+(defclass APPEARANCE-EVENT
+	(is-a ABOUT+APPEARANCE)
+	(role concrete))
+
+(defclass APPEARANCE-ENTITY
+	(is-a ABOUT+APPEARANCE)
+	(role concrete))
+
+(defclass APPEARANCE-MODE
+	(is-a ABOUT+APPEARANCE)
+	(role concrete))
+
+(defclass ABOUT+PROPERTY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+SIZE
+	(is-a ABOUT+PROPERTY)
+	(role concrete))
+
+(defclass ABOUT+QUANTITY
+	(is-a ABOUT+PROPERTY)
+	(role concrete))
+
+(defclass ABOUT_FASHION
+	(is-a ABOUT+PROPERTY)
+	(role concrete))
+
+(defclass ABOUT+VEHICLE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+CAUSE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+ENTITY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT_PLANTS
+	(is-a ABOUT+ENTITY)
+	(role concrete))
+
+(defclass I.ABOUT+EXISTENCE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass II.ABOUT+RELATION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+CARE-NEGLIGENCE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+NATURAL_PHENOMENON
+	(is-a ABOUT+%CE%A7)
+	(role concrete)
+	(single-slot is_characterised_by
+;+		(comment "The slot is used to denote a relation between an Adjective and a Noun.\n\nis_characterised_by(βροχερός, βροχή)")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ABOUT+OBLIGATION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MEDICINE
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MEDICATION
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass ABOUT+MONEY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass II%CE%99.ABOUT_UNITY
+	(is-a ABOUT+%CE%A7)
+	(role concrete))
+
+(defclass FEATURES "ΧΑΡΑΚΚΤΗΡΙΣΤΙΚΑ"
+	(is-a USER)
+	(role concrete))
+
+(defclass TYPE+OF+RELATION "ΤΥΠΟΣ ΣΧΕΣΗΣ"
+	(is-a FEATURES)
+	(role concrete)
+	(multislot is_super_relation_type_of
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+		(create-accessor read-write))
+	(single-slot is_symmetric
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_inverseFunctional
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_inverse_relation_type
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_name
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot is_transitive
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot is_sub_relation_type_of
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+		(create-accessor read-write))
+	(single-slot is_functional
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GRAMMATICAL+GENDER "ΓΡΑΜΜΑΤΙΚΟ ΓΕΝΟΣ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GRAMMATICAL+CASE "ΓΡΑΜΜΑΤΙΚΗ ΠΤΩΣΗ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GRAMMATICAL+DEGREE "ΒΑΘΜΟΣ ΕΠΙΘΕΤΟΥ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GRAMMATICAL+NUMBER "ΑΡΙΘΜΟΣ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GRAMMATICAL+TENSE "ΧΡΟΝΟΣ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass DECLENSION "ΚΛΙΣΗ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass REGISTER "2023 - Μάιος - έκδοση 5.10\nΜετά από μελέτη της σχετικής βιβλιογραφίας και συστηματική έρευνα που πραγματοποιήθηκε στα 3 μεγαλύτερα υφιστάμενα λεξικά (ΛΚΝ, ΛΝΕΓ, ΧρΛΝΓ), συμπληρώθηκε ο κατάλογος των υφολογικών και πραγματολογικών δεικτών. Υιοθετήθηκε η διάκριση του ΧρΛΝΓ.\nΠροστέθηκε τεκμηρίωση σε κάθε στιγμιότυπο."
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot notes
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TRUE+RELATION "ΠΡΑΓΜΑΤΩΜΕΝΗ ΣΧΕΣΗ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot relation_from
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot relation_type
+		(type INSTANCE)
+;+		(allowed-classes TYPE+OF+RELATION)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot relation_to
+		(type INSTANCE)
+;+		(allowed-classes SIGNIFIED)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GRAMMATICAL+FUNCTION "ΓΡΑΜΜΑΤΙΚΗ ΛΕΙΤΟΥΡΓΙΑ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass POLARITY "ΠΟΛΙΚΟΤΗΤΑ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass INTENSITY "ΕΝΤΑΣΗ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SEM-ROLE "ΣΗΜΑΣΙΟΛΟΓΙΚΟΣ ΡΟΛΟΣ"
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot has_string
+;+		(comment "The string that comprises the lexical unit")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass VALENCY "ΣΘΕΝΟΣ\n\nΣθένος είναι ο αριθμός των ορισμάτων ή μετεχόντων (υποκειμένου - αντικειμένου/αντικειμένων) που προβλέπονται από τη σημασία κάθε ρήματος (συνήθως μονοσθενή, δισθενή και τρισθενή ρήματα)"
+	(is-a FEATURES)
+	(role concrete))
+
+(defclass 0_ARGUMENTS "Η κατηγορία ΣΘ ΡΗΜΑΤΟΣ ΧΩΡΙΣ ΟΡΙΣΜΑ περιλαμβάνει τις ρηματικές δομές που δεν υποστηρίζουν ορίσματα (π.χ. βρέχει)."
+	(is-a VALENCY)
+	(role concrete))
+
+(defclass 2_ARGUMENTS "Δισθενή ρήματα με συμπλήρωμα ΟΦ σε θέση Υποκειμένου και συμπλήρωμα (σε πλάγια πτώση, προθετική φράση ή δευτερεύουσα πρόταση).\n\nΟ Γιάννης στρώνει το τραπέζι\nΟ Γιάννης αγαπάει τη Μαρία"
+	(is-a VALENCY)
+	(role concrete)
+	(single-slot arg1_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Cause Experiencer Patient Theme%2FTopic Beneficiary Instrument Location Measure Recipient)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_the_semantic_role
+;+		(comment "Agent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+		(default Agent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg0_SemClass
+;+		(comment "30.01.2019\nΜπορεί να επιλεγεί οποιαδήποτε σημασιολογική κατηγορία\n\n07.06.2017. \nΚανονικά θα πρέπει να μπορείς να συνδέεις αυτό με μία κατηγορία της οντολογίας - αυτή τη στιγμή υπάρχουν μόνο κάποιες τιμές.")
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot arg0_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg0.\nThe following values are allowed:\n \nnp_nm: noun phrase in nominative case\ncl-να: να clause\ncl-ότι: ότι clause")
+		(type SYMBOL)
+		(allowed-values np_nm cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default np_nm)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot arg1_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg1_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg1.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase in genitive case\ncl-να: να clause\ncl-ότι: ότι clause\npp: prepositional phrase")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge cl-%CF%8C%CF%84%CE%B9 cl-%CE%BD%CE%B1 pp)
+		(default np_ac)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg1_SemClass
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot arg1_selects_prep
+;+		(comment "The slot is used to encode the preposition of Arg1")
+		(type SYMBOL)
+		(allowed-values %CE%B3%CE%B9%CE%B1 %CE%B1%CF%80%CF%8C %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write)))
+
+(defclass 3_ARGUMENTS "Τρισθενή ρήματα με συμπλήρωμα ΟΦ σε θέση Υποκειμένου και δύο συμπληρώματα: ένα σε θέση αμέσου αντικειμένου και ένα σε θέση εμμέσου αντικειμένου. \n\nΑπό τα συμπληρώματα αυτά, το άμεσο αντικείμενο εκφέρεται σε αιτιατική ή δευτερεύουσα πρόταση, ενώ το έμμεσο με προθετική φράση.\n\nΟ Γιάννης δίνει ένα δώρο στη Μαρία\nΟ Γιάννης γράφει ένα γράμμα στη Μαρία\nΟ Γιάννης λέει στη Μαρία να φύγει."
+	(is-a VALENCY)
+	(role concrete)
+	(single-slot arg0_has_the_semantic_role
+;+		(comment "Agent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+		(default Agent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg0_SemClass
+;+		(comment "30.01.2019\nΜπορεί να επιλεγεί οποιαδήποτε σημασιολογική κατηγορία\n\n07.06.2017. \nΚανονικά θα πρέπει να μπορείς να συνδέεις αυτό με μία κατηγορία της οντολογίας - αυτή τη στιγμή υπάρχουν μόνο κάποιες τιμές.")
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot arg2_selects_prep
+		(type SYMBOL)
+		(allowed-values %CE%B1%CF%80%CF%8C %CE%B3%CE%B9%CE%B1 %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write))
+	(single-slot arg1_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg1_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg1.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase in genitive case\ncl-να: να clause\ncl-ότι: ότι clause\npp: prepositional phrase")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge cl-%CF%8C%CF%84%CE%B9 cl-%CE%BD%CE%B1 pp)
+		(default np_ac)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg1_SemClass
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot arg2_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(single-slot arg1_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Cause Experiencer Patient Theme%2FTopic Beneficiary Instrument Location Measure Recipient)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg2_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg2_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg2_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg2.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge pp cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default pp)
+		(create-accessor read-write))
+	(multislot arg0_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg0.\nThe following values are allowed:\n \nnp_nm: noun phrase in nominative case\ncl-να: να clause\ncl-ότι: ότι clause")
+		(type SYMBOL)
+		(allowed-values np_nm cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default np_nm)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg1_selects_prep
+;+		(comment "The slot is used to encode the preposition of Arg1")
+		(type SYMBOL)
+		(allowed-values %CE%B3%CE%B9%CE%B1 %CE%B1%CF%80%CF%8C %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write)))
+
+(defclass 4_ARGUMENTS
+	(is-a VALENCY)
+	(role concrete)
+	(single-slot arg3_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values ccomp csubj iobj nsubj pred obj)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_the_semantic_role
+;+		(comment "Agent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+		(default Agent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg0_SemClass
+;+		(comment "30.01.2019\nΜπορεί να επιλεγεί οποιαδήποτε σημασιολογική κατηγορία\n\n07.06.2017. \nΚανονικά θα πρέπει να μπορείς να συνδέεις αυτό με μία κατηγορία της οντολογίας - αυτή τη στιγμή υπάρχουν μόνο κάποιες τιμές.")
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot arg2_selects_prep
+		(type SYMBOL)
+		(allowed-values %CE%B1%CF%80%CF%8C %CE%B3%CE%B9%CE%B1 %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write))
+	(single-slot arg1_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg1_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg1.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase in genitive case\ncl-να: να clause\ncl-ότι: ότι clause\npp: prepositional phrase")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge cl-%CF%8C%CF%84%CE%B9 cl-%CE%BD%CE%B1 pp)
+		(default np_ac)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg1_SemClass
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(single-slot arg3_has_the_semantic_role
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Patient Theme%2FTopic Recipient Measure)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg2_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(single-slot arg1_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Cause Experiencer Patient Theme%2FTopic Beneficiary Instrument Location Measure Recipient)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg2_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg3_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg3.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values pp np_ac np_ge cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(create-accessor read-write))
+	(single-slot arg0_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg2_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg2_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg2.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge pp cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default pp)
+		(create-accessor read-write))
+	(multislot arg3_selects_prep
+		(type SYMBOL)
+		(allowed-values %CE%B1%CF%80%CF%8C %CE%B3%CE%B9%CE%B1 %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write))
+	(multislot arg0_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg0.\nThe following values are allowed:\n \nnp_nm: noun phrase in nominative case\ncl-να: να clause\ncl-ότι: ότι clause")
+		(type SYMBOL)
+		(allowed-values np_nm cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default np_nm)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg3_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(multislot arg1_selects_prep
+;+		(comment "The slot is used to encode the preposition of Arg1")
+		(type SYMBOL)
+		(allowed-values %CE%B3%CE%B9%CE%B1 %CE%B1%CF%80%CF%8C %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write)))
+
+(defclass 5_ARGUMENTS
+	(is-a VALENCY)
+	(role concrete)
+	(single-slot arg4_has_the_semantic_role
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg3_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values ccomp csubj iobj nsubj pred obj)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_the_semantic_role
+;+		(comment "Agent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+		(default Agent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg0_SemClass
+;+		(comment "30.01.2019\nΜπορεί να επιλεγεί οποιαδήποτε σημασιολογική κατηγορία\n\n07.06.2017. \nΚανονικά θα πρέπει να μπορείς να συνδέεις αυτό με μία κατηγορία της οντολογίας - αυτή τη στιγμή υπάρχουν μόνο κάποιες τιμές.")
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot arg4_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(single-slot arg1_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg1_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg1.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase in genitive case\ncl-να: να clause\ncl-ότι: ότι clause\npp: prepositional phrase")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge cl-%CF%8C%CF%84%CE%B9 cl-%CE%BD%CE%B1 pp)
+		(default np_ac)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg4_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg4.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge pp cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(create-accessor read-write))
+	(multislot arg1_SemClass
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(single-slot arg3_has_the_semantic_role
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Patient Theme%2FTopic Recipient Measure)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg2_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(single-slot arg1_has_the_semantic_role
+;+		(comment "Semantic Role Labeling (SRL). The following roles are foreseen:\n\nAgent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Cause Experiencer Patient Theme%2FTopic Beneficiary Instrument Location Measure Recipient)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg3_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg3.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values pp np_ac np_ge cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(create-accessor read-write))
+	(single-slot arg0_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg2_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg4_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values ccomp csubj iobj nsubj pred obj)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg2_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg2.\nThe following values are allowed:\n\nnp_ac: noun phrase in accusative case\nnp_ge: noun phrase ingenitive case\npp: prepositional phrase\ncl-να: complement να clause\ncl-ότι: complement ότι clause")
+		(type SYMBOL)
+		(allowed-values np_ac np_ge pp cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default pp)
+		(create-accessor read-write))
+	(multislot arg3_selects_prep
+		(type SYMBOL)
+		(allowed-values %CE%B1%CF%80%CF%8C %CE%B3%CE%B9%CE%B1 %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write))
+	(multislot arg0_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg0.\nThe following values are allowed:\n \nnp_nm: noun phrase in nominative case\ncl-να: να clause\ncl-ότι: ότι clause")
+		(type SYMBOL)
+		(allowed-values np_nm cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default np_nm)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot arg3_SemClass
+		(type SYMBOL)
+		(allowed-values %2Bhum -hum %2B%2F-hum)
+		(create-accessor read-write))
+	(multislot arg1_selects_prep
+;+		(comment "The slot is used to encode the preposition of Arg1")
+		(type SYMBOL)
+		(allowed-values %CE%B3%CE%B9%CE%B1 %CE%B1%CF%80%CF%8C %CF%83%CE%B5 %CE%BC%CE%B5)
+		(create-accessor read-write)))
+
+(defclass 1_ARGUMENT "Μονοσθενή ρήματα.\nΤο παιδί πείνασε.\nΟ Γιάννης χασμουρήθηκε."
+	(is-a VALENCY)
+	(role concrete)
+	(single-slot arg0_has_grammatical_function
+;+		(comment "We have adopted the notation proposed by the Universal Dependencies (UD) initiative for annotating core arguments. In addition, we have used the pred tag to mark arguments with the function of a predicative (instead of the nmod employed by the UD scheme).\n\nccomp:  clausal complement\ncsubj:    clausal subject\niobj:       indirect object\nnsubj:    nominal subject\npred:      pred\nobj:        object")
+		(type SYMBOL)
+		(allowed-values nsubj obj iobj ccomp csubj pred)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot arg0_has_the_semantic_role
+;+		(comment "Agent: the entity that performs the action denoted by the predicate. An agent is (or is perceived to be) concious or santient.\n\nBeneficiary: the entity that benefits from the action denoted by the predicate.\n\nCause: the entity that brings about or is the reason for the state of affairs denoted by the predicate. A Cause, opposite to an Agent, is not concious or santient.\n\nExperiencer: the entity that undergoes a sensory, cognitive or emotional experience denoted by the predicate\n\nInstrument: the entity by means of which a state of affairs is brought about. An Instrument, opposite to an Agent, are not concious or santient.\n\nLocation: the place an event or action is taking place.\n\nMeasure: the extent along some dimension (lenght, duration, cost, etc)\n\nPatient: the entity undergoing the effect of the action denoted by the predicate\n\nRecipient: the entity that receives something\n\nTheme/Topic: the entity which is affected by the action or state of affairs")
+		(type SYMBOL)
+		(allowed-values Agent Beneficiary Cause Experiencer Instrument Location Measure Patient Recipient Theme%2FTopic)
+		(default Agent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot arg0_SemClass
+;+		(comment "30.01.2019\nΜπορεί να επιλεγεί οποιαδήποτε σημασιολογική κατηγορία\n\n07.06.2017. \nΚανονικά θα πρέπει να μπορείς να συνδέεις αυτό με μία κατηγορία της οντολογίας - αυτή τη στιγμή υπάρχουν μόνο κάποιες τιμές.")
+		(type SYMBOL)
+;+		(allowed-parents IS-A+%CE%A7)
+		(create-accessor read-write))
+	(multislot arg0_Type
+;+		(comment "The slot is used to encode the syntactic category of Arg0.\nThe following values are allowed:\n \nnp_nm: noun phrase in nominative case\ncl-να: να clause\ncl-ότι: ότι clause")
+		(type SYMBOL)
+		(allowed-values np_nm cl-%CE%BD%CE%B1 cl-%CF%8C%CF%84%CE%B9)
+		(default np_nm)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass N1_V "Εργαστικά και μεταβιβαστικά ρήματα. \nΡήματα τα οποία έχουν δύο συντάξεις χωρίς αλλαγή φωνής.\n\nΟ Γιάννης θύμωσε τη Μαρία\nΗ Μαρία θύμωσε"
+	(is-a VALENCY)
+	(role concrete))
+
+(defclass MORPHO-COMPOSITION
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot is_semRel_byDeriv
+;+		(comment "is semantically related by derivation")
+		(type INSTANCE)
+;+		(allowed-classes PART+of+SPEECH)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MORPHO-SEM-DERIV
+	(is-a FEATURES)
+	(role concrete)
+	(single-slot is_semRel_byDeriv
+;+		(comment "is semantically related by derivation")
+		(type INSTANCE)
+;+		(allowed-classes PART+of+SPEECH)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_SemRole_deriv
+		(type INSTANCE)
+;+		(allowed-classes SEM-ROLE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass %3AUNDEFINED
+	(is-a USER)
+	(role concrete))
+
+(defclass AFFIX
+	(is-a USER)
+	(role concrete))
+
+(defclass PREFIX
+	(is-a AFFIX)
+	(role concrete))
+
+(defclass SUFFIX
+	(is-a AFFIX)
+	(role concrete))
+
+(defclass SUFFIX-WORD
+	(is-a AFFIX)
+	(role concrete))
+
+(defclass ExternalReference
+	(is-a USER)
+	(role concrete)
+	(single-slot ontologyId
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ontologyName
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot url
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot preferredTerm
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot conceptId
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass LEXICAL+ENTRY "A lexical entry represents a unit of analysis of a lexicon that consists of a set of forms that are grammatically related and a set of base meanings that are associated with all of these forms. Thus, a lexical entry is a word, multiword expression or affix with a single part-of-speech, morphological pattern, etymology and set of senses."
+	(is-a USER)
+	(role concrete)
+	(single-slot is_MorphoDerived_from
+		(type INSTANCE)
+;+		(allowed-classes LEXICAL+ENTRY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_root
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has-affix
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_sense
+;+		(comment "Links a lemma form with one or more instances that pertain to a grammatical category G and is/are mapped onto a concept C. Lemmatisation rules apply  accoriding to lexicographic practices.")
+		(type INSTANCE)
+;+		(allowed-classes PART+of+SPEECH)
+		(create-accessor read-write))
+	(single-slot pattern
+		(type SYMBOL)
+		(allowed-values Adj%3AAdv Adj%3AN Adj%3AV N%3AAdj N%3AN N%3AV V%3AAdj V%3AN nominalisation Reborrowing Loanword Adv%3AAdj)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
